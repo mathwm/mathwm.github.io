@@ -1,0 +1,562 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/article/img/favicon.png">
+  <link rel="icon" type="image/png" href="/article/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Java简易编程">
+  <meta name="author" content="mathwm">
+  <meta name="keywords" content="Java简易编程">
+  <title>Java8（二）Lambda基础语法 - Java简易编程</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/article/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/article/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/article/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz","app_key":"NXV42Cawsx5pgWBLFvRrkVBI","server_url":null}}};
+  </script>
+  <script  src="/article/js/utils.js" ></script>
+  <script  src="/article/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/article/">&nbsp;<strong>Java轻量级笔记</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/article/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Java8（二）Lambda基础语法">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-09 10:08" pubdate>
+        2021年5月9日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.6k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      18
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java8（二）Lambda基础语法</h1>
+            
+            <div class="markdown-body">
+              <p>Lambda需要函数式接口支持，Java8四大函数式接口</p>
+<a id="more"></a>
+
+<h3 id="Consumer接口"><a href="#Consumer接口" class="headerlink" title="Consumer接口"></a>Consumer接口</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">Consumer<span class="hljs-tag">&lt;<span class="hljs-name">T</span>&gt;</span>接口：消费型接口：<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">TestLamba3</span> </span>&#123;<br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test1</span><span class="hljs-params">()</span> </span>&#123;<br>        happy(<span class="hljs-number">10000</span>,(m) -&gt; System.out.println(<span class="hljs-string">&quot;KTV消费:&quot;</span> + m));<br>    &#125;<br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">happy</span><span class="hljs-params">(<span class="hljs-keyword">double</span> money, Consumer&lt;Double&gt; consumer)</span> </span>&#123;<br>        consumer.accept(money);<br>    &#125;<br><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Supplier接口"><a href="#Supplier接口" class="headerlink" title="Supplier接口"></a>Supplier接口</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs xml">Supplier<span class="hljs-tag">&lt;<span class="hljs-name">T</span>&gt;</span>接口：供给型接口：<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-meta">@Test</span><br><br><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test2</span><span class="hljs-params">()</span> </span>&#123;   <br>	List&lt;Integer&gt; list =  getNumList(<span class="hljs-number">10</span>,() -&gt; (<span class="hljs-keyword">int</span>)(Math.random() * <span class="hljs-number">100</span>)); <br>    <span class="hljs-keyword">for</span> (Integer i:list) &#123;    <br>    System.out.println(i); <br>    &#125;<br>  &#125;<br>    <span class="hljs-comment">//产生一些整数，并放入集合中</span><br>  <span class="hljs-function"><span class="hljs-keyword">public</span> List&lt;Integer&gt; <span class="hljs-title">getNumList</span><span class="hljs-params">(<span class="hljs-keyword">int</span> num, Supplier&lt;Integer&gt; supplier)</span> </span>&#123;<br>        List&lt;Integer&gt; list = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;();<br>        <span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>;i&lt;num;i++) &#123;<br>            list.add(supplier.get());<br>        &#125;<br>        <span class="hljs-keyword">return</span> list;<br>    &#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Function接口"><a href="#Function接口" class="headerlink" title="Function接口"></a>Function接口</h3><figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs delphi"><span class="hljs-function"><span class="hljs-keyword">Function</span>&lt;<span class="hljs-title">T</span>,<span class="hljs-title">R</span>&gt;:</span>函数型接口：<br></code></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">public</span> String <span class="hljs-title">strHandler</span><span class="hljs-params">(String str, Function&lt;String,String&gt; function)</span> </span>&#123;<br>        <span class="hljs-keyword">return</span> function.apply(str);<br>&#125; <br>    <span class="hljs-meta">@Test</span><br>    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">test3</span><span class="hljs-params">()</span> </span>&#123;<br>        System.out.println(strHandler(<span class="hljs-string">&quot;\t\t\t 我是帅哥&quot;</span>,(str) -&gt; str.trim()));<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="Predicate-接口"><a href="#Predicate-接口" class="headerlink" title="Predicate 接口"></a>Predicate 接口</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"> <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;<br>       Predicate&lt;Integer&gt; predOdd = integer -&gt; integer % <span class="hljs-number">2</span> == <span class="hljs-number">1</span>;<br>       System.out.println(predOdd.test(<span class="hljs-number">5</span>));<br>    <span class="hljs-comment">//控制台输出 5</span><br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="其他的接口"><a href="#其他的接口" class="headerlink" title="其他的接口"></a>其他的接口</h3><p>介绍完正面这四种最基本的接口，剩余的接口就可以很容易的理解了，java8中定义了几十种的函数接口，但是剩下的接口都是上面这几种接口的变种，大多为限制参数类型，数量，下面举几个例子。</p>
+<h3 id="类型限制接口"><a href="#类型限制接口" class="headerlink" title="类型限制接口"></a>类型限制接口</h3><ul>
+<li>参数类型,例如<code>IntPredicate,LongPredicate, DoublePredicate</code>，这几个接口，都是在基于Predicate接口的，不同的就是他们的泛型类型分别变成了Integer,Long,Double,<code>IntConsumer,LongConsumer, DoubleConsumer</code>比如这几个,对应的就是<code>Consumer&lt;Integer&gt;,Consumer&lt;Long&gt;,Consumer&lt;Double&gt;</code>,其余的是一样的道理，就不再举例子了</li>
+<li>返回值类型，和上面类似，只是命名的规则上多了一个To,例如<code>IntToDoubleFunction,IntToLongFunction,</code> 很明显就是对应的<code>Funtion&lt;Integer,Double&gt;</code> 与<code>Fcuntion&lt;Integer,Long&gt;</code>，其余同理，另外需要注意的是，参数限制与返回值限制的命名唯一不同就是To,简单来说,前面不带To的都是参数类型限制,带To的是返回值类型限制，对于没有参数的函数接口，那显而易见只可能是对返回值作限制。例如<code>LongFunction&lt;R&gt;</code>就相当于<code>Function&lt;Long,R&gt;</code> 而多了一个To的<code>ToLongFunction&lt;T&gt;</code>就相当于<code>Function&lt;T,Long&gt;</code>，也就是对返回值类型作了限制。</li>
+</ul>
+<h3 id="数量限制接口"><a href="#数量限制接口" class="headerlink" title="数量限制接口"></a>数量限制接口</h3><ul>
+<li>有些接口需要接受两名参数,此类接口的所有名字前面都是附加上Bi,是<code>Binary</code>的缩写，开头也介绍过这个单词了，是二元的意思，例如<code>BiPredicate,BiFcuntion</code>等等,而由于java没有多返回值的设定，所以Bi指的都是参数为两个</li>
+</ul>
+<h3 id="Operator接口"><a href="#Operator接口" class="headerlink" title="Operator接口"></a>Operator接口</h3><ul>
+<li>此类接口只有2个分别是<code>UnaryOperator&lt;T&gt;</code> 一元操作符接口,与<code>BinaryOperator&lt;T&gt;</code>二元操作符接口，这类接口属于Function接口的简写，他们只有一个泛型参数，意思是Funtion的参数与返回值类型相同,一般多用于操作计算，计算 a + b的BiFcuntion如果限制条件为Integer的话 往往要这么写<code>BiFunction&lt;Integer,Integer,Integer&gt;</code> 前2个泛型代表参数，最后一个代表返回值，看起来似乎是有点繁重了,这个时候就可以用<code>BinaryOperator&lt;Integer&gt;</code>来代替了。</li>
+</ul>
+<p>下面是各种类型的接口的示意图，相信只要真正理解了，其实问题并不大</p>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/%E5%87%BD%E6%95%B0%E5%BC%8F%E6%8E%A5%E5%8F%A3.png" srcset="/article/img/loading.gif" alt="函数式接口"></p>
+<h3 id="关于lambda的限制"><a href="#关于lambda的限制" class="headerlink" title="关于lambda的限制"></a>关于lambda的限制</h3><p>Java8中的lambda表达式,并不是完全闭包，lambda表达式对值封闭，不对变量封闭。简单点来说就是局部变量在lambda表达式中如果要使用，必须是声明final类型或者是隐式的final例如</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> num = <span class="hljs-number">123</span>;<br>Consumer&lt;Integer&gt; print = () -&gt; System.out.println(num);<br></code></pre></td></tr></table></figure>
+<p>就是可以的,虽然num没有被声明为final，但从整体来看，他和final类型的变量的表现是一致的，可如果是这样的代码</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">int</span> num = <span class="hljs-number">123</span>;<br>num ++;<br>Consumer&lt;Integer&gt; print = () -&gt; System.out.println(num);<br></code></pre></td></tr></table></figure>
+<p>则无法通过编译器，这就是对值封闭(也就是栈上的变量封闭)<br>如果上文中的num是实例变量或者是静态变量就没有这个限制。<br>看到这里，自然而然就会有疑问为什么会这样？或者说为什么要这么设计。理由有很多，例如函数的不变性，线程安全等等等，这里我给一个简单的说明</p>
+<ul>
+<li>为什么局部变量会有限制而静态变量和全局变量就没有限制，因为局部变量是保存在栈上的，而众所周知，栈上的变量都隐式的表现了它们仅限于它们所在的线程，而静态变量与实例变量是保存在静态区与堆中的，而这两块区域是线程共享的，所以访问并没有问题。</li>
+<li>现在我们假设如果lambda表达式可以局部变量的情况，实例变量存储在堆中，局部变量存储在栈上，而lambda表达式是在另外一个线程中使用的，那么在访问局部变量的时候，因为线程不共享，因此lambda可能会在分配该变量的线程将这个变量收回之后，去访问该变量。所以说，Java在访问自由局部变量时，实际上是在访问它的副本，而不是访问原始变量。如果局部变量仅仅赋值一次那就没有什么区别了。</li>
+<li>严格保证这种限制会让你的代码变得无比安全，如果你学习或了解过一些经典的函数式语言的话，就会知道不变性的重要性，这也是为什么stream流可以十分方便的改成并行流的重要原因之一。</li>
+</ul>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p>本篇介绍了四大函数接口和他们引申出的各类接口，终点是对不同种类行为的封装导致了设计出不同的函数接口，另外在使用函数接口或者lambda表达式的时候，要注意lambda对值封闭这个特性。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/article/categories/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/article/categories/Java/Java8/">Java8</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/article/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/article/tags/Java8/">Java8</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/article/59631e7d.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">SQL(一)</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/d82ee921.html">
+                        <span class="hidden-mobile">Mybatis(二)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz",
+          app_key: "NXV42Cawsx5pgWBLFvRrkVBI",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br/> <a href="https://beian.miit.gov.cn/" target="_blank">琼ICP备2020005672号</a> <br/> <span>Copyright © 2020 - 2021 Javacgo 联系邮箱：javacgo#163.com(把"#"换成"@")</span> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 uv
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/article/js/debouncer.js" ></script>
+<script  src="/article/js/events.js" ></script>
+<script  src="/article/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/article/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/article/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/article/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/article/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/article/js/boot.js" ></script>
+
+
+
+</body>
+</html>

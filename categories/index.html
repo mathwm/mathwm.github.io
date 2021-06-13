@@ -1,0 +1,1156 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/article/img/favicon.png">
+  <link rel="icon" type="image/png" href="/article/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Java简易编程">
+  <meta name="author" content="mathwm">
+  <meta name="keywords" content="Java简易编程">
+  <title>分类 - Java简易编程</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/article/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/article/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz","app_key":"NXV42Cawsx5pgWBLFvRrkVBI","server_url":null}}};
+  </script>
+  <script  src="/article/js/utils.js" ></script>
+  <script  src="/article/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 60vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/article/">&nbsp;<strong>Java轻量级笔记</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/article/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="分类">
+              
+            </span>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div class="py-5" id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+
+
+
+
+
+<div class="category-list">
+  
+  
+  
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vwi0003vszobsxrhyaz" role="tab" data-toggle="collapse" href="#collapse-ckobf9vwi0003vszobsxrhyaz"
+        aria-expanded="false"
+      >
+        Java
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>20</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vwi0003vszobsxrhyaz" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckobf9vwi0003vszobsxrhyaz">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vxi001ovszofi16a90m" role="tab" data-toggle="collapse" href="#collapse-ckobf9vxi001ovszofi16a90m"
+        aria-expanded="false"
+      >
+        SpringCloud
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/SpringCloud/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>5</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vxi001ovszofi16a90m" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vxi001ovszofi16a90m">
+    
+    
+    
+      
+      
+        <a href="/article/d6c639c2.html" class="list-group-item list-group-item-action">
+          <span class="category-post">SpringCloud微服务配置（五）网关Geteway</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/66dfa74b.html" class="list-group-item list-group-item-action">
+          <span class="category-post">SpringCloud微服务配置（四）Hystrix</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/94a7c36.html" class="list-group-item list-group-item-action">
+          <span class="category-post">SpringCloud微服务配置（三）Feign</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/9fb379d1.html" class="list-group-item list-group-item-action">
+          <span class="category-post">SpringCloud微服务配置（二）Nacos</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/a76f8744.html" class="list-group-item list-group-item-action">
+          <span class="category-post">SpringCloud微服务配置（一）微服务介绍</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vy20036vszobosx87ya" role="tab" data-toggle="collapse" href="#collapse-ckobf9vy20036vszobosx87ya"
+        aria-expanded="false"
+      >
+        Java8
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/Java8/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>3</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vy20036vszobosx87ya" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vy20036vszobosx87ya">
+    
+    
+    
+      
+      
+        <a href="/article/6d87eb5a.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Java8（三）Lambda基础语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/f12a12a1.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Java8（二）Lambda基础语法</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/51e730c6.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Java8（一）Lambda基础语法</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vyb0049vszobt4rczqs" role="tab" data-toggle="collapse" href="#collapse-ckobf9vyb0049vszobt4rczqs"
+        aria-expanded="false"
+      >
+        多线程设计模式
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>3</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vyb0049vszobt4rczqs" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vyb0049vszobt4rczqs">
+    
+    
+    
+      
+      
+        <a href="/article/c67e6147.html" class="list-group-item list-group-item-action">
+          <span class="category-post">通俗易懂多线程（二）不变的Immutable</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/d88f9ffb.html" class="list-group-item list-group-item-action">
+          <span class="category-post">多线程juc（一）Semaphore</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/a89aa826.html" class="list-group-item list-group-item-action">
+          <span class="category-post">通俗易懂多线程（一）SingleThreadedExecution</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vx3000ovszo22a9apd2" role="tab" data-toggle="collapse" href="#collapse-ckobf9vx3000ovszo22a9apd2"
+        aria-expanded="false"
+      >
+        Excel
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/Excel/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vx3000ovszo22a9apd2" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vx3000ovszo22a9apd2">
+    
+    
+    
+      
+      
+        <a href="/article/8c5923fc.html" class="list-group-item list-group-item-action">
+          <span class="category-post">EazyExcel对Excel读操作（二）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/d746f705.html" class="list-group-item list-group-item-action">
+          <span class="category-post">EazyExcel对Excel写操作（一）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vy30039vszoh3ga9605" role="tab" data-toggle="collapse" href="#collapse-ckobf9vy30039vszoh3ga9605"
+        aria-expanded="false"
+      >
+        JWT
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/JWT/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vy30039vszoh3ga9605" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vy30039vszoh3ga9605">
+    
+    
+    
+      
+      
+        <a href="/article/d2017093.html" class="list-group-item list-group-item-action">
+          <span class="category-post">网页系统登录流程</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/8d17cdf0.html" class="list-group-item list-group-item-action">
+          <span class="category-post">JWT使用</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vy4003dvszobm2khldv" role="tab" data-toggle="collapse" href="#collapse-ckobf9vy4003dvszobm2khldv"
+        aria-expanded="false"
+      >
+        OAuth2
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/OAuth2/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vy4003dvszobm2khldv" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vy4003dvszobm2khldv">
+    
+    
+    
+      
+      
+        <a href="/article/896b0bc8.html" class="list-group-item list-group-item-action">
+          <span class="category-post">OAuth2（二）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/64d2c350.html" class="list-group-item list-group-item-action">
+          <span class="category-post">OAuth2（一）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vy7003rvszodii09dsf" role="tab" data-toggle="collapse" href="#collapse-ckobf9vy7003rvszodii09dsf"
+        aria-expanded="false"
+      >
+        Maven
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/Maven/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vy7003rvszodii09dsf" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vy7003rvszodii09dsf">
+    
+    
+    
+      
+      
+        <a href="/article/c0a43c51.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Maven安装本地依赖包</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vy9003yvszo5ge02mnm" role="tab" data-toggle="collapse" href="#collapse-ckobf9vy9003yvszo5ge02mnm"
+        aria-expanded="false"
+      >
+        Mybatis
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/Mybatis/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vy9003yvszo5ge02mnm" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vy9003yvszo5ge02mnm">
+    
+    
+    
+      
+      
+        <a href="/article/350e175a.html" class="list-group-item list-group-item-action">
+          <span class="category-post">MybatisPlus代码生成器</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vya0043vszohz50ae3u" role="tab" data-toggle="collapse" href="#collapse-ckobf9vya0043vszohz50ae3u"
+        aria-expanded="false"
+      >
+        多线程
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Java/%E5%A4%9A%E7%BA%BF%E7%A8%8B/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vya0043vszohz50ae3u" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vya0043vszohz50ae3u">
+    
+    
+    
+      
+      
+        <a href="/article/1e717591.html" class="list-group-item list-group-item-action">
+          <span class="category-post">String与StringBuffer之间的区别</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vxy002mvszo2l1dg4ch" role="tab" data-toggle="collapse" href="#collapse-ckobf9vxy002mvszo2l1dg4ch"
+        aria-expanded="false"
+      >
+        JavaScript
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/JavaScript/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>8</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vxy002mvszo2l1dg4ch" class="collapse in " role="tabpanel"
+       aria-labelledby="heading-ckobf9vxy002mvszo2l1dg4ch">
+    
+  
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vyi0057vszo54ld6o0m" role="tab" data-toggle="collapse" href="#collapse-ckobf9vyi0057vszo54ld6o0m"
+        aria-expanded="false"
+      >
+        Npm
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/JavaScript/Npm/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>4</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vyi0057vszo54ld6o0m" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vyi0057vszo54ld6o0m">
+    
+    
+    
+      
+      
+        <a href="/article/84268f9a.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Npm使用秘籍（四）vue-element-admin</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/435ae317.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Npm使用秘籍（三）模块化</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/24973f24.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Npm使用秘籍（二）Babel</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/6f2b5017.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Npm使用秘籍(一)</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vyt005yvszo6kjedwgd" role="tab" data-toggle="collapse" href="#collapse-ckobf9vyt005yvszo6kjedwgd"
+        aria-expanded="false"
+      >
+        Vue
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/JavaScript/Vue/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>3</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vyt005yvszo6kjedwgd" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vyt005yvszo6kjedwgd">
+    
+    
+    
+      
+      
+        <a href="/article/94af54e4.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Vue（三）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/ed774485.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Vue（二）</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/ad25968.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Vue（一）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category-sub row">
+      <a
+        class="category-subitem collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vys005rvszodblv7xd9" role="tab" data-toggle="collapse" href="#collapse-ckobf9vys005rvszodblv7xd9"
+        aria-expanded="false"
+      >
+        Es6
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/JavaScript/Es6/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vys005rvszodblv7xd9" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vys005rvszodblv7xd9">
+    
+    
+    
+      
+      
+        <a href="/article/7af56f75.html" class="list-group-item list-group-item-action">
+          <span class="category-post">ECMAScript 6.0（一）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vwz000ivszo2pwdh2f6" role="tab" data-toggle="collapse" href="#collapse-ckobf9vwz000ivszo2pwdh2f6"
+        aria-expanded="false"
+      >
+        Hexo
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Hexo/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>5</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vwz000ivszo2pwdh2f6" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vwz000ivszo2pwdh2f6">
+    
+    
+    
+      
+      
+        <a href="/article/a1c442ab.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Hexo入坑指南（五）配置文件详解</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/181f256d.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Hexo入坑指南（四） 生成永久文章链接</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/47d6bb9e.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Hexo入坑指南（三） 远端部署</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/7f9e57b7.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Hexo入坑指南（二） 撰写Markdown文章</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/4a17b156.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Hexo入坑指南（一）</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vz6006svszodi91e3zu" role="tab" data-toggle="collapse" href="#collapse-ckobf9vz6006svszodi91e3zu"
+        aria-expanded="false"
+      >
+        Mybatis
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Mybatis/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vz6006svszodi91e3zu" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vz6006svszodi91e3zu">
+    
+    
+    
+      
+      
+        <a href="/article/d82ee921.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Mybatis(二)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/771f7243.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Mybatis(一)</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vz9006zvszo5l8y0uaz" role="tab" data-toggle="collapse" href="#collapse-ckobf9vz9006zvszo5l8y0uaz"
+        aria-expanded="false"
+      >
+        SQL
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/SQL/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>2</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vz9006zvszo5l8y0uaz" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vz9006zvszo5l8y0uaz">
+    
+    
+    
+      
+      
+        <a href="/article/59631e7d.html" class="list-group-item list-group-item-action">
+          <span class="category-post">SQL(一)</span>
+        </a>
+      
+    
+      
+      
+        <a href="/article/cc343209.html" class="list-group-item list-group-item-action">
+          <span class="category-post">SQL 连接(JOIN)</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+    
+    
+    <div class="category row">
+      <a
+        class="category-item collapsed list-group-item category-item-action col-10 col-md-11"
+        id="heading-ckobf9vwu000cvszo42k43nfd" role="tab" data-toggle="collapse" href="#collapse-ckobf9vwu000cvszo42k43nfd"
+        aria-expanded="false"
+      >
+        Git
+        <i class="iconfont icon-arrowright"></i>
+      </a>
+      <a href="/article/categories/Git/" class="category-count col-2 col-md-1">
+        <i class="iconfont icon-articles"></i>
+        <span>1</span>
+      </a>
+      <div class="category-collapse">
+        
+          
+  <div id="collapse-ckobf9vwu000cvszo42k43nfd" class="collapse in" role="tabpanel"
+       aria-labelledby="heading-ckobf9vwu000cvszo42k43nfd">
+    
+    
+    
+      
+      
+        <a href="/article/d4138e8e.html" class="list-group-item list-group-item-action">
+          <span class="category-post">Git多个远程仓库</span>
+        </a>
+      
+    
+  </div>
+
+        
+      </div>
+    </div>
+  
+</div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br/> <a href="https://beian.miit.gov.cn/" target="_blank">琼ICP备2020005672号</a> <br/> <span>Copyright © 2020 - 2021 Javacgo 联系邮箱：javacgo#163.com(把"#"换成"@")</span> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 uv
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/article/js/debouncer.js" ></script>
+<script  src="/article/js/events.js" ></script>
+<script  src="/article/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/article/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/article/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/article/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/article/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/article/js/boot.js" ></script>
+
+
+
+</body>
+</html>

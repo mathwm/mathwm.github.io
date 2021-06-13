@@ -1,0 +1,573 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/article/img/favicon.png">
+  <link rel="icon" type="image/png" href="/article/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Java简易编程">
+  <meta name="author" content="mathwm">
+  <meta name="keywords" content="Java简易编程">
+  <title>Vue（三） - Java简易编程</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/article/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/article/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/article/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz","app_key":"NXV42Cawsx5pgWBLFvRrkVBI","server_url":null}}};
+  </script>
+  <script  src="/article/js/utils.js" ></script>
+  <script  src="/article/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/article/">&nbsp;<strong>Java轻量级笔记</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/article/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Vue（三）">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-05-02 22:13" pubdate>
+        2021年5月2日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.9k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      29
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Vue（三）</h1>
+            
+            <div class="markdown-body">
+              <h3 id="一、组件（重点）"><a href="#一、组件（重点）" class="headerlink" title="一、组件（重点）"></a>一、组件（重点）</h3><p>组件（Component）是 Vue.js 最强大的功能之一。</p>
+<p>组件可以扩展 HTML 元素，封装可重用的代码。</p>
+<p>组件系统让我们可以用独立可复用的小组件来构建大型应用，几乎任意类型的应用的界面都可以抽象为一个组件树：</p>
+<a id="more"></a>
+
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/0.5887660670164327.png" srcset="/article/img/loading.gif" alt="0.5887660670164327"></p>
+<h4 id="1、局部组件"><a href="#1、局部组件" class="headerlink" title="1、局部组件"></a>1、局部组件</h4><p>定义组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vue">var app &#x3D; new Vue(&#123;<br>    el: &#39;#app&#39;,<br>    &#x2F;&#x2F; 定义局部组件，这里可以定义多个局部组件<br>    components: &#123;<br>        &#x2F;&#x2F;组件的名字<br>        &#39;Navbar&#39;: &#123;<br>            &#x2F;&#x2F;组件的内容<br>            template: &#39;&lt;ul&gt;&lt;li&gt;首页&lt;&#x2F;li&gt;&lt;li&gt;学员管理&lt;&#x2F;li&gt;&lt;&#x2F;ul&gt;&#39;<br>        &#125;<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p>使用组件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;div id&#x3D;&quot;app&quot;&gt;<br>    &lt;Navbar&gt;&lt;&#x2F;Navbar&gt;<br>&lt;&#x2F;div&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="2、全局组件"><a href="#2、全局组件" class="headerlink" title="2、全局组件"></a>2、全局组件</h4><p>定义全局组件：components/Navbar.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vue">&#x2F;&#x2F; 定义全局组件<br>Vue.component(&#39;Navbar&#39;, &#123;<br>    template: &#39;&lt;ul&gt;&lt;li&gt;首页&lt;&#x2F;li&gt;&lt;li&gt;学员管理&lt;&#x2F;li&gt;&lt;li&gt;讲师管理&lt;&#x2F;li&gt;&lt;&#x2F;ul&gt;&#39;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;div id&#x3D;&quot;app&quot;&gt;<br>    &lt;Navbar&gt;&lt;&#x2F;Navbar&gt;<br>&lt;&#x2F;div&gt;<br>&lt;script src&#x3D;&quot;vue.min.js&quot;&gt;&lt;&#x2F;script&gt;<br>&lt;script src&#x3D;&quot;components&#x2F;Navbar.js&quot;&gt;&lt;&#x2F;script&gt;<br>&lt;script&gt;<br>    var app &#x3D; new Vue(&#123;<br>        el: &#39;#app&#39;<br>    &#125;)<br>&lt;&#x2F;script&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="二、实例生命周期"><a href="#二、实例生命周期" class="headerlink" title="二、实例生命周期"></a>二、实例生命周期</h3><p><img src="https://gitee.com/mathwm/picBed/raw/master/0.9177152660737906.png" srcset="/article/img/loading.gif" alt="实例生命周期"></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs vue">data: &#123;<br>    message: &#39;床前明月光&#39;<br>&#125;,<br>methods: &#123;<br>    show() &#123;<br>        console.log(&#39;执行show方法&#39;)<br>    &#125;,<br>    update() &#123;<br>        this.message &#x3D; &#39;玻璃好上霜&#39;<br>    &#125;<br>&#125;,<br></code></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;button @click&#x3D;&quot;update&quot;&gt;update&lt;&#x2F;button&gt;<br>&lt;h3 id&#x3D;&quot;h3&quot;&gt;&#123;&#123; message &#125;&#125;&lt;&#x2F;h3&gt;<br></code></pre></td></tr></table></figure>
+<p>分析生命周期相关方法的执行时机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><code class="hljs vue">&#x2F;&#x2F;&#x3D;&#x3D;&#x3D;创建时的四个事件<br>beforeCreate() &#123; &#x2F;&#x2F; 第一个被执行的钩子方法：实例被创建出来之前执行<br>    console.log(this.message) &#x2F;&#x2F;undefined<br>    this.show() &#x2F;&#x2F;TypeError: this.show is not a function<br>    &#x2F;&#x2F; beforeCreate执行时，data 和 methods 中的 数据都还没有没初始化<br>&#125;,<br>created() &#123; &#x2F;&#x2F; 第二个被执行的钩子方法<br>    console.log(this.message) &#x2F;&#x2F;床前明月光<br>    this.show() &#x2F;&#x2F;执行show方法<br>    &#x2F;&#x2F; created执行时，data 和 methods 都已经被初始化好了！<br>    &#x2F;&#x2F; 如果要调用 methods 中的方法，或者操作 data 中的数据，最早，只能在 created 中操作<br>&#125;,<br>beforeMount() &#123; &#x2F;&#x2F; 第三个被执行的钩子方法<br>    console.log(document.getElementById(&#39;h3&#39;).innerText) &#x2F;&#x2F;&#123;&#123; message &#125;&#125;<br>    &#x2F;&#x2F; beforeMount执行时，模板已经在内存中编辑完成了，尚未被渲染到页面中<br>&#125;,<br>mounted() &#123; &#x2F;&#x2F; 第四个被执行的钩子方法<br>    console.log(document.getElementById(&#39;h3&#39;).innerText) &#x2F;&#x2F;床前明月光<br>    &#x2F;&#x2F; 内存中的模板已经渲染到页面，用户已经可以看见内容<br>&#125;,<br><br><br>&#x2F;&#x2F;&#x3D;&#x3D;&#x3D;运行中的两个事件<br>beforeUpdate() &#123; &#x2F;&#x2F; 数据更新的前一刻<br>    console.log(&#39;界面显示的内容：&#39; + document.getElementById(&#39;h3&#39;).innerText)<br>    console.log(&#39;data 中的 message 数据是：&#39; + this.message)<br>    &#x2F;&#x2F; beforeUpdate执行时，内存中的数据已更新，但是页面尚未被渲染<br>&#125;,<br>updated() &#123;<br>    console.log(&#39;界面显示的内容：&#39; + document.getElementById(&#39;h3&#39;).innerText)<br>    console.log(&#39;data 中的 message 数据是：&#39; + this.message)<br>    &#x2F;&#x2F; updated执行时，内存中的数据已更新，并且页面已经被渲染<br>&#125;<br></code></pre></td></tr></table></figure>
+<h3 id="四、路由"><a href="#四、路由" class="headerlink" title="四、路由"></a>四、路由</h3><p>Vue.js 路由允许我们通过不同的 URL 访问不同的内容。</p>
+<p>通过 Vue.js 可以实现多视图的单页Web应用（single page web application，SPA）。</p>
+<p>Vue.js 路由需要载入 vue-router 库</p>
+<h4 id="1、引入js"><a href="#1、引入js" class="headerlink" title="1、引入js"></a>1、引入js</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script src&#x3D;&quot;vue.min.js&quot;&gt;&lt;&#x2F;script&gt;<br>&lt;script src&#x3D;&quot;vue-router.min.js&quot;&gt;&lt;&#x2F;script&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="2、编写html"><a href="#2、编写html" class="headerlink" title="2、编写html"></a>2、编写html</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;div id&#x3D;&quot;app&quot;&gt;<br>    &lt;h1&gt;Hello App!&lt;&#x2F;h1&gt;<br>    &lt;p&gt;<br>        &lt;!-- 使用 router-link 组件来导航. --&gt;<br>        &lt;!-- 通过传入 &#96;to&#96; 属性指定链接. --&gt;<br>        &lt;!-- &lt;router-link&gt; 默认会被渲染成一个 &#96;&lt;a&gt;&#96; 标签 --&gt;<br>        &lt;router-link to&#x3D;&quot;&#x2F;&quot;&gt;首页&lt;&#x2F;router-link&gt;<br>        &lt;router-link to&#x3D;&quot;&#x2F;student&quot;&gt;会员管理&lt;&#x2F;router-link&gt;<br>        &lt;router-link to&#x3D;&quot;&#x2F;teacher&quot;&gt;讲师管理&lt;&#x2F;router-link&gt;<br>    &lt;&#x2F;p&gt;<br>    &lt;!-- 路由出口 --&gt;<br><br>    &lt;!-- 路由匹配到的组件将渲染在这里 --&gt;<br><br>    &lt;router-view&gt;&lt;&#x2F;router-view&gt;<br><br>&lt;&#x2F;div&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="3、编写js"><a href="#3、编写js" class="headerlink" title="3、编写js"></a>3、编写js</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br>    &#x2F;&#x2F; 1. 定义（路由）组件。<br>    &#x2F;&#x2F; 可以从其他文件 import 进来<br>    const Welcome &#x3D; &#123; template: &#39;&lt;div&gt;欢迎&lt;&#x2F;div&gt;&#39; &#125;<br>    const Student &#x3D; &#123; template: &#39;&lt;div&gt;student list&lt;&#x2F;div&gt;&#39; &#125;<br>    const Teacher &#x3D; &#123; template: &#39;&lt;div&gt;teacher list&lt;&#x2F;div&gt;&#39; &#125;<br>    &#x2F;&#x2F; 2. 定义路由<br><br>    &#x2F;&#x2F; 每个路由应该映射一个组件。<br>    const routes &#x3D; [<br>        &#123; path: &#39;&#x2F;&#39;, redirect: &#39;&#x2F;welcome&#39; &#125;, &#x2F;&#x2F;设置默认指向的路径<br>        &#123; path: &#39;&#x2F;welcome&#39;, component: Welcome &#125;,<br>        &#123; path: &#39;&#x2F;student&#39;, component: Student &#125;,<br>        &#123; path: &#39;&#x2F;teacher&#39;, component: Teacher &#125;<br>    ]<br>    &#x2F;&#x2F; 3. 创建 router 实例，然后传 &#96;routes&#96; 配置<br>    const router &#x3D; new VueRouter(&#123;<br>        routes &#x2F;&#x2F; （缩写）相当于 routes: routes<br>    &#125;)<br>    &#x2F;&#x2F; 4. 创建和挂载根实例。<br>    &#x2F;&#x2F; 从而让整个应用都有路由功能<br>    const app &#x3D; new Vue(&#123;<br>        el: &#39;#app&#39;,<br>        router<br>    &#125;)<br>    &#x2F;&#x2F; 现在，应用已经启动了！<br>&lt;&#x2F;script&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="五、axios"><a href="#五、axios" class="headerlink" title="五、axios"></a>五、axios</h3><p>axios是独立于vue的一个项目，基于promise用于浏览器和node.js的http客户端</p>
+<ul>
+<li>在浏览器中可以帮助我们完成 ajax请求的发送</li>
+<li>在node.js中可以向远程接口发送请求</li>
+</ul>
+<h4 id="获取数据"><a href="#获取数据" class="headerlink" title="获取数据"></a>获取数据</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script src&#x3D;&quot;vue.min.js&quot;&gt;&lt;&#x2F;script&gt;<br>&lt;script src&#x3D;&quot;axios.min.js&quot;&gt;&lt;&#x2F;script&gt;<br></code></pre></td></tr></table></figure>
+<p>注意：测试时需要开启后端服务器，并且后端开启跨域访问权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><code class="hljs vue">var app &#x3D; new Vue(&#123;<br>    el: &#39;#app&#39;,<br>    data: &#123;<br>        memberList: []&#x2F;&#x2F;数组<br>    &#125;,<br>    created() &#123;<br>        this.getList()<br>    &#125;,<br>    methods: &#123;<br>        getList(id) &#123;<br>            &#x2F;&#x2F;vm &#x3D; this<br>            axios.get(&#39;http:&#x2F;&#x2F;localhost:8081&#x2F;admin&#x2F;ucenter&#x2F;member&#39;)<br>            .then(response &#x3D;&gt; &#123;<br>                console.log(response)<br>                this.memberList &#x3D; response.data.data.items<br>            &#125;)<br>            .catch(error &#x3D;&gt; &#123;<br>                console.log(error)<br>            &#125;)<br>        &#125;<br>    &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
+<p><strong>控制台查看输出</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;div id&#x3D;&quot;app&quot;&gt;<br>    &lt;table border&#x3D;&quot;1&quot;&gt;<br>        &lt;tr&gt;<br>            &lt;td&gt;id&lt;&#x2F;td&gt;<br>            &lt;td&gt;姓名&lt;&#x2F;td&gt;<br>        &lt;&#x2F;tr&gt;<br>        &lt;tr v-for&#x3D;&quot;item in memberList&quot;&gt;<br>            &lt;td&gt;&#123;&#123;item.memberId&#125;&#125;&lt;&#x2F;td&gt;<br>            &lt;td&gt;&#123;&#123;item.nickname&#125;&#125;&lt;&#x2F;td&gt;<br>        &lt;&#x2F;td&gt;<br>    &lt;&#x2F;tr&gt;<br>&lt;&#x2F;table&gt;<br>&lt;&#x2F;div&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="六、element-ui："><a href="#六、element-ui：" class="headerlink" title="六、element-ui："></a>六、element-ui：</h3><p>element-ui 是饿了么前端出品的基于 Vue.js的 后台组件库，方便程序员进行页面快速布局和构建</p>
+<p>官网： <a target="_blank" rel="noopener" href="http://element-cn.eleme.io/#/zh-CN">http://element-cn.eleme.io/#/zh-CN</a></p>
+<p>创建 06-element-ui.html</p>
+<p>将element-ui引入到项目</p>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/67c16425-795a-48bb-ad7d-e0b8fa1c8ea5.png" srcset="/article/img/loading.gif" alt="img"></p>
+<h4 id="1、引入css"><a href="#1、引入css" class="headerlink" title="1、引入css"></a>1、引入css</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- import CSS --&gt;<br>&lt;link rel&#x3D;&quot;stylesheet&quot; href&#x3D;&quot;element-ui&#x2F;lib&#x2F;theme-chalk&#x2F;index.css&quot;&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="2、引入js"><a href="#2、引入js" class="headerlink" title="2、引入js"></a>2、引入js</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;!-- import Vue before Element --&gt;<br>&lt;script src&#x3D;&quot;vue.min.js&quot;&gt;&lt;&#x2F;script&gt;<br>&lt;!-- import JavaScript --&gt;<br>&lt;script src&#x3D;&quot;element-ui&#x2F;lib&#x2F;index.js&quot;&gt;&lt;&#x2F;script&gt;<br></code></pre></td></tr></table></figure>
+<h4 id="3、编写html"><a href="#3、编写html" class="headerlink" title="3、编写html"></a>3、编写html</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;div id&#x3D;&quot;app&quot;&gt;<br>    &lt;el-button @click&#x3D;&quot;visible &#x3D; true&quot;&gt;Button&lt;&#x2F;el-button&gt;<br>    &lt;el-dialog :visible.sync&#x3D;&quot;visible&quot; title&#x3D;&quot;Hello world&quot;&gt;<br>        &lt;p&gt;Try Element&lt;&#x2F;p&gt;<br>    &lt;&#x2F;el-dialog&gt;<br>&lt;&#x2F;div&gt;<br></code></pre></td></tr></table></figure>
+<p>关于.sync的扩展阅读</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d42c508ea9de">https://www.jianshu.com/p/d42c508ea9de</a></p>
+<h4 id="4、编写js"><a href="#4、编写js" class="headerlink" title="4、编写js"></a>4、编写js</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs vue">&lt;script&gt;<br>    new Vue(&#123;<br>      el: &#39;#app&#39;,<br>      data: function () &#123;&#x2F;&#x2F;定义Vue中data的另一种方式<br>        return &#123; visible: false &#125;<br>      &#125;<br>    &#125;)<br>&lt;&#x2F;script&gt;<br></code></pre></td></tr></table></figure>
+<h3 id="其他ui组件"><a href="#其他ui组件" class="headerlink" title="其他ui组件"></a>其他ui组件</h3>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/article/categories/JavaScript/">JavaScript</a>
+                    
+                      <a class="hover-with-bg" href="/article/categories/JavaScript/Vue/">Vue</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/article/tags/JavaScript/">JavaScript</a>
+                    
+                      <a class="hover-with-bg" href="/article/tags/Vue/">Vue</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/article/24973f24.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Npm使用秘籍（二）Babel</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/ed774485.html">
+                        <span class="hidden-mobile">Vue（二）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz",
+          app_key: "NXV42Cawsx5pgWBLFvRrkVBI",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br/> <a href="https://beian.miit.gov.cn/" target="_blank">琼ICP备2020005672号</a> <br/> <span>Copyright © 2020 - 2021 Javacgo 联系邮箱：javacgo#163.com(把"#"换成"@")</span> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 uv
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/article/js/debouncer.js" ></script>
+<script  src="/article/js/events.js" ></script>
+<script  src="/article/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/article/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/article/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/article/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/article/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/article/js/boot.js" ></script>
+
+
+
+</body>
+</html>

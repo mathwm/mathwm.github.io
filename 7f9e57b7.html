@@ -1,0 +1,586 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/article/img/favicon.png">
+  <link rel="icon" type="image/png" href="/article/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Java简易编程">
+  <meta name="author" content="mathwm">
+  <meta name="keywords" content="Java简易编程">
+  <title>Hexo入坑指南（二） 撰写Markdown文章 - Java简易编程</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/article/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/article/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/article/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz","app_key":"NXV42Cawsx5pgWBLFvRrkVBI","server_url":null}}};
+  </script>
+  <script  src="/article/js/utils.js" ></script>
+  <script  src="/article/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/article/">&nbsp;<strong>Java轻量级笔记</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/article/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Hexo入坑指南（二） 撰写Markdown文章">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-17 12:59" pubdate>
+        2021年1月17日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Hexo入坑指南（二） 撰写Markdown文章</h1>
+            
+            <div class="markdown-body">
+              <h3 id="一、创建文章"><a href="#一、创建文章" class="headerlink" title="一、创建文章"></a>一、创建文章</h3><p>打开命令行，Linux打开shell,Windows打开cmd,输入如下命令创建文章，其中 <code>title</code> 为文章的标题</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sh">$ hexo new <span class="hljs-string">&quot;title&quot;</span><br></code></pre></td></tr></table></figure>
+<p>当输入命令后，就会在 <code>source/_post</code> 文件夹下创建一个文件，命名为：<code>title.md</code></p>
+<p>当发布Hexo后，这篇文章就出现在博客中了</p>
+<h3 id="二、编写文章（基于-Markdown）"><a href="#二、编写文章（基于-Markdown）" class="headerlink" title="二、编写文章（基于 Markdown）"></a>二、编写文章（基于 Markdown）</h3><h4 id="1、Markdown-简介"><a href="#1、Markdown-简介" class="headerlink" title="1、Markdown 简介"></a>1、Markdown 简介</h4><p>但是，在我们正式写下第一个文字前，我们需要了解一下究竟什么是 Markdown？</p>
+<blockquote>
+<p>Markdown 是一种可以使用普通文本编辑器编写的 <strong>标记语言</strong>，通过简单的 <strong>标记语法</strong>，它可以使普通文本内容具有一定的格式</p>
+</blockquote>
+<p>有点像HTML，一样是标记语言</p>
+<p>为了编写Markdown，有很多编辑器方便我们的书写，下面介绍几款</p>
+<h5 id="1、Mou"><a href="#1、Mou" class="headerlink" title="1、Mou"></a>1、<strong>Mou</strong></h5><p><a target="_blank" rel="noopener" href="http://25.io/mou/">http://25.io/mou/</a></p>
+<h5 id="2、MarkdownPad"><a href="#2、MarkdownPad" class="headerlink" title="2、MarkdownPad"></a>2、<strong>MarkdownPad</strong></h5><p><a target="_blank" rel="noopener" href="http://markdownpad.com/">http://markdownpad.com/</a></p>
+<h5 id="３、Typora"><a href="#３、Typora" class="headerlink" title="３、Typora"></a><strong>３、Typora</strong></h5><p><a target="_blank" rel="noopener" href="https://www.typora.io/">https://www.typora.io/</a></p>
+<h4 id="2、常用的-Markdown-语法"><a href="#2、常用的-Markdown-语法" class="headerlink" title="2、常用的 Markdown 语法"></a>2、常用的 Markdown 语法</h4><h5 id="（1）标题"><a href="#（1）标题" class="headerlink" title="（1）标题"></a>（1）标题</h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs tex"># 一级标题<br>## 二级标题<br>### 三级标题<br>#### 四级标题<br>##### 五级标题<br>###### 六级标题<br></code></pre></td></tr></table></figure>
+<h5 id="Typora-快捷键："><a href="#Typora-快捷键：" class="headerlink" title="Typora 快捷键："></a><strong>Typora 快捷键：</strong></h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl+1：一级标题<br><br>Ctrl+2：二级标题<br><br>Ctrl+3：三级标题<br><br>Ctrl+4：四级标题<br><br>Ctrl+5：五级标题<br><br>Ctrl+6 ：六级标题<br><br>Ctrl+0：段落<br></code></pre></td></tr></table></figure>
+<h5 id="（2）粗体、斜体、删除线和下划线"><a href="#（2）粗体、斜体、删除线和下划线" class="headerlink" title="（2）粗体、斜体、删除线和下划线"></a>（2）粗体、斜体、删除线和下划线</h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">*斜体*<br>**粗体**<br>***加粗斜体***<br>~~删除线~~<br></code></pre></td></tr></table></figure>
+<h5 id="Typora-快捷键：-1"><a href="#Typora-快捷键：-1" class="headerlink" title="Typora 快捷键："></a><strong>Typora 快捷键：</strong></h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs tex">Ctrl+I：斜体<br><br>Ctrl+B：粗体<br><br>Ctrl+U：下划线<br><br>Alt+Shift+5：删除线<br></code></pre></td></tr></table></figure>
+<h5 id="（3）引用块"><a href="#（3）引用块" class="headerlink" title="（3）引用块"></a>（3）引用块</h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">&gt; 文字引用<br></code></pre></td></tr></table></figure>
+<h5 id="Typora-快捷键：-Ctrl-Shift-Q"><a href="#Typora-快捷键：-Ctrl-Shift-Q" class="headerlink" title="Typora 快捷键： Ctrl+Shift+Q"></a><strong>Typora 快捷键：</strong> Ctrl+Shift+Q</h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs tex">&#96;行内代码&#96;<br><br>&#96;&#96;&#96;<br>多行代码<br>多行代码<br>&#96;&#96;&#96;<br></code></pre></td></tr></table></figure>
+<h5 id="Typora-快捷键：-2"><a href="#Typora-快捷键：-2" class="headerlink" title="Typora 快捷键："></a><strong>Typora 快捷键：</strong></h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tex">行内代码：Ctrl+Shift+&#96;<br><br>多行代码：Ctrl+Shift+K<br></code></pre></td></tr></table></figure>
+<h5 id="（5）公式块"><a href="#（5）公式块" class="headerlink" title="（5）公式块"></a>（5）公式块</h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs tex">$$<br>数学公式<br>$$<br></code></pre></td></tr></table></figure>
+<p><strong>Typora 快捷键：</strong> Ctrl+Shift+M</p>
+<h5 id="（6）分割线"><a href="#（6）分割线" class="headerlink" title="（6）分割线"></a>（6）分割线</h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tex">方法一：---<br><br>方法二：+++<br><br>方法三：***<br></code></pre></td></tr></table></figure>
+<h5 id="（7）列表"><a href="#（7）列表" class="headerlink" title="（7）列表"></a>（7）列表</h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs tex">1. 有序列表项<br><br>* 无序列表项<br><br>+ 无序列表项<br><br>- 无序列表项<br></code></pre></td></tr></table></figure>
+<p><strong>Typora 快捷键：</strong></p>
+<p>有序列表项：Ctrl+Shift+[</p>
+<p>无序列表项：Ctrl+Shift+]</p>
+<h5 id="（8）表格"><a href="#（8）表格" class="headerlink" title="（8）表格"></a>（8）表格</h5><p><strong>Markdown 语法：</strong></p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">表头1|表头2<br>-|-|-<br>内容11|内容12<br>内容21|内容22<br></code></pre></td></tr></table></figure>
+<p><strong>Typora 快捷键：</strong> Ctrl+T</p>
+<h5 id="（9）超链接"><a href="#（9）超链接" class="headerlink" title="（9）超链接"></a>（9）超链接</h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs tex">方法一：[链接文字](链接地址 &quot;链接描述&quot;)<br>例如：[示例链接](https:&#x2F;&#x2F;www.example.com&#x2F; &quot;示例链接&quot;)<br><br>方法二：&lt;链接地址&gt;<br>例如：&lt;https:&#x2F;&#x2F;www.example.com&#x2F;&gt;<br></code></pre></td></tr></table></figure>
+<p><strong>Typora快捷键：</strong> Ctrl+K</p>
+<h5 id="（10）图片"><a href="#（10）图片" class="headerlink" title="（10）图片"></a>（10）图片</h5><figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs tex">![图片文字](图片地址 &quot;图片描述&quot;)<br>例如：![示例图片](https:&#x2F;&#x2F;www.example.com&#x2F;example.PNG &quot;示例图片&quot;)<br></code></pre></td></tr></table></figure>
+<p><strong>Typora快捷键：</strong> Ctrl+Shift+I</p>
+<p><strong>说明</strong>：在 Hexo中 插入图片时，请按照以下的步骤进行设置</p>
+<ol>
+<li><p>将 <strong>站点配置文件</strong> 中的 <code>post_asset_folder</code> 选项的值设置为 true</p>
+</li>
+<li><p>在站点文件夹中打开 git bash，输入命令 <code>npm install hexo-asset-image --save</code> 安装插件</p>
+</li>
+<li><p>这样，当使用 <code>hexo new title</code> 创建文章时，将同时在 <code>source/_post</code> 文件夹中生成一个与 title 同名的文件夹，我们只需将图片放进此文件夹中，然后在文章中通过 Markdown 语法进行引用即可</p>
+<p>例如，在资源文件夹（就是那个与 title 同名的文件夹）中添加图片 example.PNG，则可以在对应的文章中使用语句 <code>![示例图片](title/example.PNG &quot;示例图片&quot;)</code> 添加图片</p>
+</li>
+</ol>
+<h3 id="三、高级用法"><a href="#三、高级用法" class="headerlink" title="三、高级用法"></a>三、高级用法</h3><h4 id="（1）模板设置"><a href="#（1）模板设置" class="headerlink" title="（1）模板设置"></a>（1）模板设置</h4><p>   当我们使用命令 <code>hexo new &quot;title&quot;</code> 创建文章时，Hexo 会根据 <code>/scaffolds/post.md</code> 对新文章进行初始化</p>
+<p>   换言之，<code>/scaffolds/post.md</code> 就是新文章的 <strong>模板</strong>，所以我们可以修改它来适应自己的写作习惯</p>
+<p>   一个简单的示例如下：</p>
+   <figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">title: &#123;&#123; title &#125;&#125;<br>date: &#123;&#123; date &#125;&#125;<br>tags: <br>categories: <br></code></pre></td></tr></table></figure>
+<h4 id="（2）头部设置"><a href="#（2）头部设置" class="headerlink" title="（2）头部设置"></a>（2）头部设置</h4><p>在每篇利用 Hexo 创建的文章的开头，都会有对文章进行说明的文字，叫做 <strong>文章头部</strong></p>
+<p>文章的头部除了可以设置文章标题、发布日期等基础信息外，还可以为文章添加标签、分类等</p>
+<p>一个简单的示例如下：</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">title: Title<br>date: YYYY-MM-DD HH:MM:SS<br>tags: [tag1, tag2, ...]<br>categories: category<br></code></pre></td></tr></table></figure>
+<p><strong>注意</strong>：属性和属性值之间必须有一个空格，否则会解析错误</p>
+<h4 id="（3）首页显示"><a href="#（3）首页显示" class="headerlink" title="（3）首页显示"></a>（3）首页显示</h4><p>在利用 Hexo 框架搭建的博客网站中，首页会显示文章的内容，且默认显示文章的全部内容</p>
+<p>如果当文章太长的时候就会显得十分冗余，所以我们有必要对其进行精简</p>
+<p>这时，我们只需在文章中使用 <code>&lt;!--more--&gt;</code> 标志即可，表示只会显示标志前面的内容</p>
+<h3 id="四、部署发布"><a href="#四、部署发布" class="headerlink" title="四、部署发布"></a>四、部署发布</h3><p>在命令行，输入如下命令部署和发布文章</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs tex">$ hexo g -d<br></code></pre></td></tr></table></figure>
+<p><strong>建议</strong>：在使用 <code>hexo g</code> 部署之后，可以先使用 <code>hexo s</code> 运行本地站点，然后在浏览器输入地址 <a target="_blank" rel="noopener" href="http://lacolhost:4000/">http://lacolhost:4000/</a> 查看运行结果，检查无误后再使用 <code>hexo d</code> 发布</p>
+<p><strong>部署方式</strong>：有git部署方式，也可以使用<code>hexo g</code>运行后得到<code>public</code>目录后使用宝塔上传</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/article/categories/Hexo/">Hexo</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/article/tags/Hexo/">Hexo</a>
+                    
+                      <a class="hover-with-bg" href="/article/tags/Markdown/">Markdown</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/article/47d6bb9e.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Hexo入坑指南（三） 远端部署</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/4a17b156.html">
+                        <span class="hidden-mobile">Hexo入坑指南（一）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz",
+          app_key: "NXV42Cawsx5pgWBLFvRrkVBI",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br/> <a href="https://beian.miit.gov.cn/" target="_blank">琼ICP备2020005672号</a> <br/> <span>Copyright © 2020 - 2021 Javacgo 联系邮箱：javacgo#163.com(把"#"换成"@")</span> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 uv
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/article/js/debouncer.js" ></script>
+<script  src="/article/js/events.js" ></script>
+<script  src="/article/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/article/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/article/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/article/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/article/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/article/js/boot.js" ></script>
+
+
+
+</body>
+</html>

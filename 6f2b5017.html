@@ -1,0 +1,567 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=&#34;auto&#34;>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/article/img/favicon.png">
+  <link rel="icon" type="image/png" href="/article/img/favicon.png">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="Java简易编程">
+  <meta name="author" content="mathwm">
+  <meta name="keywords" content="Java简易编程">
+  <title>Npm使用秘籍(一) - Java简易编程</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/article/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/article/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/article/","version":"1.8.7","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"onlypost":false},"web_analytics":{"enable":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":"pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz","app_key":"NXV42Cawsx5pgWBLFvRrkVBI","server_url":null}}};
+  </script>
+  <script  src="/article/js/utils.js" ></script>
+  <script  src="/article/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.3.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/article/">&nbsp;<strong>Java轻量级笔记</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/article/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;</a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" href="javascript:">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/article/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="Npm使用秘籍(一)">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-01-29 09:32" pubdate>
+        2021年1月29日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1.2k 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      14
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Npm使用秘籍(一)</h1>
+            
+            <div class="markdown-body">
+              <h3 id="一、什么是NPM"><a href="#一、什么是NPM" class="headerlink" title="一、什么是NPM"></a>一、什么是NPM</h3><p>NPM全称Node Package Manager，是Node.js包管理工具，是全球最大的模块生态系统，里面所有的模块都是开源免费的；也是Node.js的包管理工具，相当于前端的Maven 。</p>
+<h3 id="二、NPM工具的安装位置"><a href="#二、NPM工具的安装位置" class="headerlink" title="二、NPM工具的安装位置"></a>二、NPM工具的安装位置</h3><p>我们通过npm 可以很方便地下载js库，管理前端工程。</p>
+<p>Node.js默认安装的npm包和工具的位置：Node.js目录\node_modules</p>
+<p>在这个目录下你可以看见 npm目录，npm本身就是被NPM包管理器管理的一个工具，说明 Node.js已经集成了npm工具</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sh"><br><span class="hljs-comment">#在命令提示符输入 npm -v 可查看当前npm版本</span><br>npm -v<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="三、使用npm管理项目"><a href="#三、使用npm管理项目" class="headerlink" title="三、使用npm管理项目"></a>三、使用npm管理项目</h3><h4 id="1、创建文件夹npm"><a href="#1、创建文件夹npm" class="headerlink" title="1、创建文件夹npm"></a>1、创建文件夹npm</h4><h4 id="2、项目初始化"><a href="#2、项目初始化" class="headerlink" title="2、项目初始化"></a>2、项目初始化</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">建立一个空文件夹，在命令提示符进入该文件夹  执行命令初始化</span><br>npm init<br><span class="hljs-meta">#</span><span class="bash">按照提示输入相关信息，如果是用默认值则直接回车即可。</span><br><span class="hljs-meta">#</span><span class="bash">name: 项目名称</span><br><span class="hljs-meta">#</span><span class="bash">version: 项目版本号</span><br><span class="hljs-meta">#</span><span class="bash">description: 项目描述</span><br><span class="hljs-meta">#</span><span class="bash">keywords: &#123;Array&#125;关键词，便于用户搜索到我们的项目</span><br><span class="hljs-meta">#</span><span class="bash">最后会生成package.json文件，这个是包的配置文件，相当于maven的pom.xml</span><br><span class="hljs-meta">#</span><span class="bash">我们之后也可以根据需要进行修改。</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">如果想直接生成 package.json 文件，那么可以使用命令</span><br>npm init -y<br></code></pre></td></tr></table></figure>
+<h3 id="四、Npm更换成淘宝镜像源"><a href="#四、Npm更换成淘宝镜像源" class="headerlink" title="四、Npm更换成淘宝镜像源"></a>四、Npm更换成淘宝镜像源</h3><h4 id="1-需求由来"><a href="#1-需求由来" class="headerlink" title="1.需求由来"></a>1.需求由来</h4><p>由于node安装插件是从国外服务器下载，受网络影响大，速度慢且可能出现异常。</p>
+<h4 id="2-使用方法"><a href="#2-使用方法" class="headerlink" title="2.使用方法"></a>2.使用方法</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm install --registry=https://registry.npm.taobao.org<br></code></pre></td></tr></table></figure>
+<h4 id="3-永久使用"><a href="#3-永久使用" class="headerlink" title="3.永久使用"></a>3.永久使用</h4><p>设置成全局的下载镜像站点，这样每次install的时候就不用加–registry，默认会从淘宝镜像下载，设置方法如下：</p>
+<p>1.打开.npmrc文件（nodejs\node_modules\npm\npmrc，没有的话可以使用git命令行建一个( touch .npmrc)，用cmd命令建会报错）<br>2.增加 registry =<a target="_blank" rel="noopener" href="https://registry.npm.taobao.org/">https://registry.npm.taobao.org</a>  即可。</p>
+<p>也可以按如下方式直接在命令行设置</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs arduino">npm <span class="hljs-built_in">config</span> <span class="hljs-built_in">set</span> registry https:<span class="hljs-comment">//registry.npm.taobao.org</span><br></code></pre></td></tr></table></figure>
+<p>检测是否成功</p>
+<figure class="highlight arduino"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs arduino"><span class="hljs-comment">// 配置后可通过下面方式来验证是否成功</span><br>npm <span class="hljs-built_in">config</span> <span class="hljs-built_in">get</span> registry<br><span class="hljs-comment">// 或</span><br>npm info express<br></code></pre></td></tr></table></figure>
+<p><strong>注：</strong>如果想还原npm仓库地址，只需再把地址配置成npm镜像就可以了</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">npm config set registry https://registry.npmjs.org/<br></code></pre></td></tr></table></figure>
+<h4 id="4-如何将npm升级到最新版本"><a href="#4-如何将npm升级到最新版本" class="headerlink" title="4.如何将npm升级到最新版本"></a>4.如何将npm升级到最新版本</h4><p>更新到指定版本 npm -g install <a href="mailto:&#110;&#112;&#109;&#64;&#x35;&#x2e;&#54;&#x2e;&#48;">&#110;&#112;&#109;&#64;&#x35;&#x2e;&#54;&#x2e;&#48;</a> （@后面加指定版本号）</p>
+<p><code>npm install -g npm@latest</code> to update npm because it is sometimes buggy.</p>
+<h3 id="五、NUXT-vue项目打包发布"><a href="#五、NUXT-vue项目打包发布" class="headerlink" title="五、NUXT vue项目打包发布"></a>五、NUXT vue项目打包发布</h3><p>1、首先执行npm run build；</p>
+<p>2、添加package.json配置内容</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs json">&quot;config&quot;:&#123;<br>    &quot;nuxt&quot;:&#123;<br>      &quot;host&quot;:&quot;0.0.0.0&quot;,<br>      &quot;port&quot;:&quot;1818&quot;<br>    &#125;<br>  &#125;,<br></code></pre></td></tr></table></figure>
+
+
+<p>3、将打包好的</p>
+<figure class="highlight tex"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs tex">.nuxt<br>static<br>nuxt.config.js<br>package.json<br></code></pre></td></tr></table></figure>
+<p>这四个文件丢到服务器的某个文件夹中，在服务器上安装node环境</p>
+<p>4、在服务器上面执行npm install</p>
+<p>5、在服务器上面执行npm run start</p>
+<p>使用nginx做代理，想项目域名代理到localhost:3000上面就阔以用域名直接访问项目了；</p>
+<p>到此nuxt项目部署完成</p>
+<h3 id="六、Centos7安装最新版Node和Npm"><a href="#六、Centos7安装最新版Node和Npm" class="headerlink" title="六、Centos7安装最新版Node和Npm"></a>六、Centos7安装最新版Node和Npm</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs shell">wget https://nodejs.org/dist/v10.13.0/node-v10.13.0-linux-x64.tar.xz <br></code></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell">xz -d node-v10.13.0-linux-x64.tar.xz<br>tar -xf node-v10.13.0-linux-x64.tar<br></code></pre></td></tr></table></figure>
+<p>配置node和npm。注意node所在目录，我的node目录是~/node-v10.13.0-linux-x64</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs sh">ln -s ~/node-v10.13.0-linux-x64/bin/node /usr/bin/node<br>ln -s ~/node-v10.13.0-linux-x64/bin/npm /usr/bin/npm<br></code></pre></td></tr></table></figure>
+<h3 id="七、npm-install命令的使用"><a href="#七、npm-install命令的使用" class="headerlink" title="七、npm install命令的使用"></a>七、npm install命令的使用</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta">#</span><span class="bash">使用 npm install 安装依赖包的最新版，</span><br><span class="hljs-meta">#</span><span class="bash">模块安装的位置：项目目录\node_modules</span><br><span class="hljs-meta">#</span><span class="bash">安装会自动在项目目录下添加 package-lock.json文件，这个文件帮助锁定安装包的版本</span><br><span class="hljs-meta">#</span><span class="bash">同时package.json 文件中，依赖包会被添加到dependencies节点下，类似maven中的 &lt;dependencies&gt;</span><br>npm install jquery<br><span class="hljs-meta">#</span><span class="bash">npm管理的项目在备份和传输的时候一般不携带node_modules文件夹</span><br>npm install #根据package.json中的配置下载依赖，初始化项目<br><span class="hljs-meta">#</span><span class="bash">如果安装时想指定特定的版本</span><br>npm install jquery@2.1.x<br><span class="hljs-meta">#</span><span class="bash">devDependencies节点：开发时的依赖包，项目打包到生产环境的时候不包含的依赖</span><br><span class="hljs-meta">#</span><span class="bash">使用 -D参数将依赖添加到devDependencies节点</span><br>npm install --save-dev eslint<br><span class="hljs-meta">#</span><span class="bash">或</span><br>npm install -D eslint<br><span class="hljs-meta">#</span><span class="bash">全局安装</span><br><span class="hljs-meta">#</span><span class="bash">Node.js全局安装的npm包和工具的位置：用户目录\AppData\Roaming\npm\node_modules</span><br><span class="hljs-meta">#</span><span class="bash">一些命令行工具常使用全局安装的方式</span><br>npm install -g webpack<br></code></pre></td></tr></table></figure>
+<h3 id="八、其它命令"><a href="#八、其它命令" class="headerlink" title="八、其它命令"></a>八、其它命令</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript">#更新包（更新到最新版本）<br>npm update 包名<br>#全局更新<br>npm update -g 包名<br>#卸载包<br>npm uninstall 包名<br>#全局卸载<br>npm uninstall -g 包名<br></code></pre></td></tr></table></figure>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/article/categories/JavaScript/">JavaScript</a>
+                    
+                      <a class="hover-with-bg" href="/article/categories/JavaScript/Npm/">Npm</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/article/tags/JavaScript/">JavaScript</a>
+                    
+                      <a class="hover-with-bg" href="/article/tags/Npm/">Npm</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/article/ad25968.html">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Vue（一）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/article/cc343209.html">
+                        <span class="hidden-mobile">SQL 连接(JOIN)</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz",
+          app_key: "NXV42Cawsx5pgWBLFvRrkVBI",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <br/> <a href="https://beian.miit.gov.cn/" target="_blank">琼ICP备2020005672号</a> <br/> <span>Copyright © 2020 - 2021 Javacgo 联系邮箱：javacgo#163.com(把"#"换成"@")</span> 
+  </div>
+  
+  <div class="statistics">
+    
+    
+
+    
+      
+        <!-- LeanCloud 统计PV -->
+        <span id="leancloud-site-pv-container" style="display: none">
+            总访问量 
+            <span id="leancloud-site-pv"></span>
+             次
+          </span>
+      
+      
+        <!-- LeanCloud 统计UV -->
+        <span id="leancloud-site-uv-container" style="display: none">
+            总访客数 uv
+            <span id="leancloud-site-uv"></span>
+             人
+          </span>
+      
+
+    
+  </div>
+
+
+  
+
+  
+</footer>
+
+<!-- SCRIPTS -->
+
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/article/js/debouncer.js" ></script>
+<script  src="/article/js/events.js" ></script>
+<script  src="/article/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  
+    <script  src="/article/js/lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
+
+
+
+  <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
+
+
+
+
+  <script defer src="/article/js/leancloud.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2.0.11/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+  <script  src="/article/js/local-search.js" ></script>
+  <script>
+    (function () {
+      var path = "/article/local-search.xml";
+      var inputArea = document.querySelector("#local-search-input");
+      inputArea.onclick = function () {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+        this.onclick = null
+      }
+    })()
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/article/js/boot.js" ></script>
+
+
+
+</body>
+</html>
