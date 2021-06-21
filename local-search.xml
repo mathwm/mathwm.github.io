@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Java8（四）强大的Stream API</title>
+    <link href="/43cabc03.html"/>
+    <url>/43cabc03.html</url>
+    
+    <content type="html"><![CDATA[<h3 id="Stream"><a href="#Stream" class="headerlink" title="Stream"></a>Stream</h3><h4 id="流-Stream-到底是什么呢？"><a href="#流-Stream-到底是什么呢？" class="headerlink" title="流(Stream) 到底是什么呢？"></a>流(Stream) 到底是什么呢？</h4><p>是数据渠道，用于操作数据源（集合、数组等）所生成的元素序列。 “集合讲的是数据，流讲的是计算！”</p><p>注意： </p><p>①Stream 自己不会存储元素。</p><p>②Stream 不会改变源对象。相反，他们会返回一个持有结果的新Stream。</p><p> ③Stream 操作是延迟执行的。这意味着他们会等到需要结果的时候才执行。</p><h4 id="Stream-的操作三个步"><a href="#Stream-的操作三个步" class="headerlink" title="Stream 的操作三个步"></a>Stream 的操作三个步</h4><p>⚫ 创建 Stream</p><p>一个数据源（如：集合、数组），获取一个流</p><p>⚫ 中间操作</p><p>一个中间操作链，对数据源的数据进行处理</p><p>⚫ 终止操作(终端操作)</p><p>一个终止操作，执行中间操作链，并产生结果</p><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210621083609999.png" alt="image-20210621083609999"></p><h4 id="创建Stream"><a href="#创建Stream" class="headerlink" title="创建Stream"></a>创建Stream</h4><p>Java8 中的 Collection 接口被扩展，提供了 两个获取流的方法：</p><p>⚫ default Stream stream() : 返回一个顺序流 </p><p>⚫ default Stream parallelStream() : 返回一个并行流</p><h5 id="由数组创建流"><a href="#由数组创建流" class="headerlink" title="由数组创建流"></a>由数组创建流</h5><p>Java8 中的 Arrays 的静态方法 stream() 可 以获取数组流：</p><p>⚫ static  Stream stream(T[] array): 返回一个流</p><p>重载形式，能够处理对应基本类型的数组： </p><p>⚫ public static IntStream stream(int[] array) </p><p>⚫ public static LongStream stream(long[] array) </p><p>⚫ public static DoubleStream stream(double[] array)</p><h5 id="由值创建流"><a href="#由值创建流" class="headerlink" title="由值创建流"></a>由值创建流</h5><p>可以使用静态方法 Stream.of(), 通过显示值 创建一个流。它可以接收任意数量的参数。</p><p>⚫ public static Stream of(T… values) : 返回一个流</p><h5 id="由函数创建流：创建无限流"><a href="#由函数创建流：创建无限流" class="headerlink" title="由函数创建流：创建无限流"></a>由函数创建流：创建无限流</h5><p>可以使用静态方法 Stream.iterate() 和 Stream.generate(), 创建无限流。</p><p>⚫ 迭代</p><p>public static Stream iterate(final T seed, final  UnaryOperator f) </p><p>⚫ 生成</p><p>public static Stream generate(Supplier s) : </p><h5 id="Stream-的中间操作"><a href="#Stream-的中间操作" class="headerlink" title="Stream 的中间操作"></a>Stream 的中间操作</h5><p>多个中间操作可以连接起来形成一个流水线，除非流水 线上触发终止操作，否则中间操作不会执行任何的处理！ 而在终止操作时一次性全部处理，称为“惰性求值” 。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>Java8</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>Java8</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java8（三）Lambda基础语法</title>
     <link href="/6d87eb5a.html"/>
     <url>/6d87eb5a.html</url>
