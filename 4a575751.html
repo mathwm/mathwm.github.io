@@ -17,9 +17,25 @@
   <meta name="description" content="Java简易编程">
   <meta name="author" content="mathwm">
   <meta name="keywords" content="Java简易编程">
-  <title>归档 - Java简易编程</title>
+  <title>Java8（六）Stream 的终止操作 - Java简易编程</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10.4.0/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -47,7 +63,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -146,9 +162,54 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="Java8（六）Stream 的终止操作">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-06-21 09:08" pubdate>
+        2021年6月21日 上午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      386 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      4
+       分钟
+    </span>
+  
+
+  
+  
+    
+      <!-- LeanCloud 统计文章PV -->
+      <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+        <i class="iconfont icon-eye" aria-hidden="true"></i>
+        <span id="leancloud-page-views"></span> 次
+      </span>
+    
+  
+</div>
 
             
           </div>
@@ -161,106 +222,207 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 42 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/8d17cdf0.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JWT使用</span>
-      <time style="float: right;">01-19</time>
-    </a>
-  
-    
-    <a href="/a1c442ab.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo入坑指南（五）配置文件详解</span>
-      <time style="float: right;">01-19</time>
-    </a>
-  
-    
-    <a href="/8c5923fc.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">EazyExcel对Excel读操作（二）</span>
-      <time style="float: right;">01-19</time>
-    </a>
-  
-    
-    <a href="/d746f705.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">EazyExcel对Excel写操作（一）</span>
-      <time style="float: right;">01-19</time>
-    </a>
-  
-    
-    <a href="/66dfa74b.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SpringCloud微服务配置（四）Hystrix</span>
-      <time style="float: right;">01-19</time>
-    </a>
-  
-    
-    <a href="/94a7c36.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SpringCloud微服务配置（三）Feign</span>
-      <time style="float: right;">01-19</time>
-    </a>
-  
-    
-    <a href="/9fb379d1.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SpringCloud微服务配置（二）Nacos</span>
-      <time style="float: right;">01-19</time>
-    </a>
-  
-    
-    <a href="/a76f8744.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">SpringCloud微服务配置（一）微服务介绍</span>
-      <time style="float: right;">01-18</time>
-    </a>
-  
-    
-    <a href="/181f256d.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo入坑指南（四） 生成永久文章链接</span>
-      <time style="float: right;">01-18</time>
-    </a>
-  
-    
-    <a href="/47d6bb9e.html" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Hexo入坑指南（三） 远端部署</span>
-      <time style="float: right;">01-18</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java8（六）Stream 的终止操作</h1>
+            
+            <div class="markdown-body">
+              <h4 id="Stream-的终止操作"><a href="#Stream-的终止操作" class="headerlink" title="Stream 的终止操作"></a>Stream 的终止操作</h4><p>终端操作会从流的流水线生成结果。其结果可以是任何不是流的 值，例如：List、Integer，甚至是 void 。</p>
+<a id="more"></a>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <a class="extend prev" rel="prev" href="/archives/2021/page/3/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/archives/2021/">1</a><a class="page-number" href="/archives/2021/page/2/">2</a><a class="page-number" href="/archives/2021/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/archives/2021/page/5/">5</a><a class="extend next" rel="next" href="/archives/2021/page/5/"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-  
-  <script>
-    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
-      ele.href += '#board';
-    }
-  </script>
+<h5 id="查找与匹配"><a href="#查找与匹配" class="headerlink" title="查找与匹配"></a>查找与匹配</h5><table>
+<thead>
+<tr>
+<th align="center">方 法</th>
+<th align="center">描 述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">allMatch(Predicate p)</td>
+<td align="center">检查是否匹配所有元素</td>
+</tr>
+<tr>
+<td align="center">anyMatch(Predicate p)</td>
+<td align="center">检查是否至少匹配一个元素</td>
+</tr>
+<tr>
+<td align="center">noneMatch(Predicate p)</td>
+<td align="center">检查是否没有匹配所有元素</td>
+</tr>
+<tr>
+<td align="center">findFirst()</td>
+<td align="center">返回第一个元素</td>
+</tr>
+<tr>
+<td align="center">findAny()</td>
+<td align="center">返回当前流中的任意元素</td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">方 法</th>
+<th align="center">方 法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">count()</td>
+<td align="center">返回流中元素总数</td>
+</tr>
+<tr>
+<td align="center">max(Comparator c)</td>
+<td align="center">返回流中最大值</td>
+</tr>
+<tr>
+<td align="center">min(Comparator c)</td>
+<td align="center">返回流中最小值</td>
+</tr>
+<tr>
+<td align="center">forEach(Consumer c)</td>
+<td align="center">内部迭代(使用 Collection 接口需要用户去做迭 代，称为外部迭代。相反，Stream API 使用内部 迭代——它帮你把迭代做了)</td>
+</tr>
+</tbody></table>
+<h5 id="归约"><a href="#归约" class="headerlink" title="归约"></a>归约</h5><table>
+<thead>
+<tr>
+<th align="center">方 法</th>
+<th align="center">方 法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">reduce(T iden, BinaryOperator b)</td>
+<td align="center">可以将流中元素反复结合起来，得到一个值。 返回 T</td>
+</tr>
+<tr>
+<td align="center">reduce(BinaryOperator b)</td>
+<td align="center">可以将流中元素反复结合起来，得到一个值。 返回 Optional</td>
+</tr>
+</tbody></table>
+<p>备注：map 和 reduce 的连接通常称为map-reduce 模式，因 Google 用它 来进行网络搜索而出名。</p>
+<h5 id="收集"><a href="#收集" class="headerlink" title="收集"></a>收集</h5><table>
+<thead>
+<tr>
+<th align="center">方 法</th>
+<th align="center">描 述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">collect(Collector c)</td>
+<td align="center">将流转换为其他形式。接收一个 Collector接口的 实现，用于给Stream中元素做汇总的方法</td>
+</tr>
+</tbody></table>
+<p>Collector 接口中方法的实现决定了如何对流执行收集操作(如收 集到 List、Set、Map)。但是 Collectors 实用类提供了很多静态 方法，可以方便地创建常见收集器实例，具体方法与实例如下表</p>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210621091935402.png" srcset="/img/loading.gif" alt="image-20210621091935402"></p>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210621092035130.png" srcset="/img/loading.gif" alt="image-20210621092035130"></p>
 
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/categories/Java/Java8/">Java8</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Java/">Java</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Java8/">Java8</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！</p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/a629f2a8.html">
+                        <span class="hidden-mobile">Java8（五）Stream 的中间操作</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div id="vcomments"></div>
+  <script type="text/javascript">
+    Fluid.utils.waitElementVisible('vcomments', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js', function () {
+        new Valine({
+          el: "#vcomments",
+          app_id: "pgdPQqLpn4nxiVbw0j7xHLS1-gzGzoHsz",
+          app_key: "NXV42Cawsx5pgWBLFvRrkVBI",
+          placeholder: "说点什么",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: false,
+          recordIP: false,
+          serverURLs: "",
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://valine.js.org" rel="nofollow noopener noopener">comments powered by Valine.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -365,9 +527,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 
