@@ -4,6 +4,35 @@
   
   
   <entry>
+    <title>Java8（五）Stream 的中间操作</title>
+    <link href="/a629f2a8.html"/>
+    <url>/a629f2a8.html</url>
+    
+    <content type="html"><![CDATA[<h4 id="Stream-的中间操作"><a href="#Stream-的中间操作" class="headerlink" title="Stream 的中间操作"></a>Stream 的中间操作</h4><p>多个中间操作可以连接起来形成一个流水线，除非流水 线上触发终止操作，否则中间操作不会执行任何的处理！ 而在终止操作时一次性全部处理，称为“惰性求值” 。</p><h5 id="筛选与切片"><a href="#筛选与切片" class="headerlink" title="筛选与切片"></a>筛选与切片</h5><table><thead><tr><th align="center">方 法</th><th align="center">描 述</th></tr></thead><tbody><tr><td align="center">filter(Predicate p)</td><td align="center">接收 Lambda ， 从流中排除某些元素。</td></tr><tr><td align="center">distinct()</td><td align="center">筛选，通过流所生成元素的 hashCode() 和 equals() 去 除重复元素</td></tr><tr><td align="center">limit(long maxSize)</td><td align="center">截断流，使其元素不超过给定数量。</td></tr><tr><td align="center">skip(long n)</td><td align="center">跳过元素，返回一个扔掉了前 n 个元素的流。若流中元素 不足 n 个，则返回一个空流。与 limit(n) 互补</td></tr></tbody></table><h4 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h4><table><thead><tr><th align="center">方 法</th><th align="center">描 述</th></tr></thead><tbody><tr><td align="center">map(Function f)</td><td align="center">接收一个函数作为参数，该函数会被应用到每个元 素上，并将其映射成一个新的元素。</td></tr><tr><td align="center">mapToDouble(ToDoubleFunction f)</td><td align="center">接收一个函数作为参数，该函数会被应用到每个元 素上，产生一个新的 DoubleStream。</td></tr><tr><td align="center">mapToInt(ToIntFunction f)</td><td align="center">接收一个函数作为参数，该函数会被应用到每个元 素上，产生一个新的 IntStream。</td></tr><tr><td align="center">mapToLong(ToLongFunction f)</td><td align="center">接收一个函数作为参数，该函数会被应用到每个元 素上，产生一个新的 LongStream。</td></tr><tr><td align="center">flatMap(Function f)</td><td align="center">接收一个函数作为参数，将流中的每个值都换成另 一个流，然后把所有流连接成一个流</td></tr></tbody></table><h4 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h4><table><thead><tr><th align="center">方 法</th><th align="center">描 述</th></tr></thead><tbody><tr><td align="center">sorted()</td><td align="center">产生一个新流，其中按自然顺序排序</td></tr><tr><td align="center">sorted(Comparator comp)</td><td align="center">产生一个新流，其中按比较器顺序排序</td></tr></tbody></table>]]></content>
+    
+    
+    <categories>
+      
+      <category>Java</category>
+      
+      <category>Java8</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Java</tag>
+      
+      <tag>Java8</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>Java8（四）强大的Stream API</title>
     <link href="/43cabc03.html"/>
     <url>/43cabc03.html</url>
