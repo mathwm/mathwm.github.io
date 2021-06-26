@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.6k 字
+      1.9k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      31
+      37
        分钟
     </span>
   
@@ -252,7 +252,7 @@
 <li>Transaction control包括<strong>COMMIT,ROLLBACK,SAVEPOINT</strong>语句</li>
 </ol>
 <h3 id="联机文档"><a href="#联机文档" class="headerlink" title="联机文档"></a>联机文档</h3><p>我们可以用过ORALCE的联机文档查询更详细的内容哦。</p>
-<h3 id="SQL语法"><a href="#SQL语法" class="headerlink" title="SQL语法"></a>SQL语法</h3><h4 id="SELECT-基础语法"><a href="#SELECT-基础语法" class="headerlink" title="SELECT 基础语法"></a>SELECT 基础语法</h4><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> * | &#123; [<span class="hljs-keyword">DISTINCT</span>] column | expression [alias],...&#125; <span class="hljs-keyword">from</span> table;<br></code></pre></td></tr></table></figure>
+<h3 id="SQL基础语法"><a href="#SQL基础语法" class="headerlink" title="SQL基础语法"></a>SQL基础语法</h3><h4 id="SELECT-基础语法"><a href="#SELECT-基础语法" class="headerlink" title="SELECT 基础语法"></a>SELECT 基础语法</h4><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> * | &#123; [<span class="hljs-keyword">DISTINCT</span>] column | expression [alias],...&#125; <span class="hljs-keyword">from</span> table;<br></code></pre></td></tr></table></figure>
 <ul>
 <li>SELECT identifies the columns to be displayed.</li>
 <li>FROM identifieds the table containing those columns.</li>
@@ -335,7 +335,7 @@
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> employee_id, last_name, salary*<span class="hljs-number">12</span> annsal<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> annsal<br></code></pre></td></tr></table></figure>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> last_name, job_id, department_id, hire_date<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> <span class="hljs-number">3</span>;<br></code></pre></td></tr></table></figure>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> last_name, job_id, department_id, salary<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> department_id, salary <span class="hljs-keyword">DESC</span>;<br></code></pre></td></tr></table></figure>
-<h3 id="Single-Row-Functions"><a href="#Single-Row-Functions" class="headerlink" title="Single-Row Functions"></a>Single-Row Functions</h3><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210516085747301.png" srcset="/img/loading.gif" alt="image-20210516085747301"></p>
+<h3 id="单行函数"><a href="#单行函数" class="headerlink" title="单行函数"></a>单行函数</h3><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210516085747301.png" srcset="/img/loading.gif" alt="image-20210516085747301"></p>
 <h4 id="Character-Functions"><a href="#Character-Functions" class="headerlink" title="Character Functions"></a>Character Functions</h4><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210516085801083.png" srcset="/img/loading.gif" alt="image-20210516085801083"></p>
 <h4 id="Case-Convarsion-Functions"><a href="#Case-Convarsion-Functions" class="headerlink" title="Case-Convarsion Functions"></a>Case-Convarsion Functions</h4><p>These functions convert the case for character strings:</p>
 <table>
@@ -471,22 +471,166 @@
 <td align="center">Truncate date</td>
 </tr>
 </tbody></table>
-<h5 id="Using-Date-Functions"><a href="#Using-Date-Functions" class="headerlink" title="Using Date Functions"></a>Using Date Functions</h5><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614122709850.png" srcset="/img/loading.gif" alt="image-20210614122709850"></p>
-<h5 id="Using-ROUND-and-TRUNCA-Functions-with-Dates"><a href="#Using-ROUND-and-TRUNCA-Functions-with-Dates" class="headerlink" title="Using ROUND and TRUNCA Functions with Dates"></a>Using ROUND and TRUNCA Functions with Dates</h5><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614122804862.png" srcset="/img/loading.gif" alt="image-20210614122804862"></p>
+<h5 id="Using-Date-Functions"><a href="#Using-Date-Functions" class="headerlink" title="Using Date Functions"></a>Using Date Functions</h5><table>
+<thead>
+<tr>
+<th align="center">Function</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">MONTHS_BETWEEN(‘01-SEP-95’,’11-JAN-94’)</td>
+<td align="center">19.6774194</td>
+</tr>
+<tr>
+<td align="center">ADD_MONTHS(‘31-JAN-96’, 1)</td>
+<td align="center">29-FEB-96</td>
+</tr>
+<tr>
+<td align="center">NEXT_DAY(‘01-SEP-95’,’FRIDAY’)</td>
+<td align="center">‘08-SEP-95’</td>
+</tr>
+<tr>
+<td align="center">LAST_DAY(‘01-FEB-95’)</td>
+<td align="center">‘28-FEB-95’</td>
+</tr>
+</tbody></table>
+<h5 id="Using-ROUND-and-TRUNCA-Functions-with-Dates"><a href="#Using-ROUND-and-TRUNCA-Functions-with-Dates" class="headerlink" title="Using ROUND and TRUNCA Functions with Dates"></a>Using ROUND and TRUNCA Functions with Dates</h5><p>Assume SYSDATE = ‘25-JUL-03’ :</p>
+<table>
+<thead>
+<tr>
+<th align="center">Function</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ROUND(SYSDATE,’MONTH’)</td>
+<td align="center">01-AUG-03</td>
+</tr>
+<tr>
+<td align="center">ROUND(SYSDATE,’YEAR’)</td>
+<td align="center">01-JAN-04</td>
+</tr>
+<tr>
+<td align="center">TRUNC(SYSDATE, ‘MONTH’)</td>
+<td align="center">01-JUL-03</td>
+</tr>
+<tr>
+<td align="center">TRUNC(SYSDATE ,’YEAR’)</td>
+<td align="center">01-JAN-03</td>
+</tr>
+</tbody></table>
 <h4 id="Conversion-Functions"><a href="#Conversion-Functions" class="headerlink" title="Conversion Functions"></a>Conversion Functions</h4><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210516090232966.png" srcset="/img/loading.gif" alt="image-20210516090232966"></p>
 <h5 id="Implicit-Data-Type-Conversion"><a href="#Implicit-Data-Type-Conversion" class="headerlink" title="Implicit Data Type Conversion"></a>Implicit Data Type Conversion</h5><p>In expressions,the Oracle server can automatically convert the following:</p>
-<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614122908872.png" srcset="/img/loading.gif" alt="image-20210614122908872"></p>
-<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614122941209.png" srcset="/img/loading.gif" alt="image-20210614122941209"></p>
-<h5 id="Explicit-Data-Type-Conversion"><a href="#Explicit-Data-Type-Conversion" class="headerlink" title="Explicit Data Type Conversion"></a>Explicit Data Type Conversion</h5><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614123015951.png" srcset="/img/loading.gif" alt="image-20210614123015951"></p>
+<table>
+<thead>
+<tr>
+<th align="center">From</th>
+<th align="center">To</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">VARCHAR2 or CHAR</td>
+<td align="center">NUMBER</td>
+</tr>
+<tr>
+<td align="center">VARCHAR2 or CHAR</td>
+<td align="center">DATE</td>
+</tr>
+<tr>
+<td align="center">NUMBER</td>
+<td align="center">VARCHAR2 or CHAR</td>
+</tr>
+<tr>
+<td align="center">DATE</td>
+<td align="center">VARCHAR2 or CHAR</td>
+</tr>
+</tbody></table>
+<h5 id="Explicit-Data-Type-Conversion"><a href="#Explicit-Data-Type-Conversion" class="headerlink" title="Explicit Data Type Conversion"></a>Explicit Data Type Conversion</h5><p><img src="https://gitee.com/mathwm/picBed/raw/master/ZH.jpg" srcset="/img/loading.gif" alt="ZH"></p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> employee_id, TO_CHAR(hire_date,<span class="hljs-string">&#x27;MM/YY&#x27;</span>) Month_Hired <br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> last_name = <span class="hljs-string">&#x27;Higgins&#x27;</span>;<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614123305088.png" srcset="/img/loading.gif" alt="image-20210614123305088"></p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> employee_id, TO_CHAR(hire_date,<span class="hljs-string">&#x27;YYYY-MM-DD&#x27;</span>) Month_Hired <br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> last_name = <span class="hljs-string">&#x27;Higgins&#x27;</span>;<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614123320164.png" srcset="/img/loading.gif" alt="image-20210614123320164"></p>
-<h5 id="Elements-of-the-Date-Format-Model"><a href="#Elements-of-the-Date-Format-Model" class="headerlink" title="Elements of the Date Format Model"></a>Elements of the Date Format Model</h5><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614123403084.png" srcset="/img/loading.gif" alt="image-20210614123403084"></p>
-<h5 id="Elements-of-the-Date-Format-Model-1"><a href="#Elements-of-the-Date-Format-Model-1" class="headerlink" title="Elements of the Date Format Model"></a>Elements of the Date Format Model</h5><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614123432160.png" srcset="/img/loading.gif" alt="image-20210614123432160"></p>
+<h5 id="Elements-of-the-Date-Format-Model"><a href="#Elements-of-the-Date-Format-Model" class="headerlink" title="Elements of the Date Format Model"></a>Elements of the Date Format Model</h5><table>
+<thead>
+<tr>
+<th align="center">Element</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">YYYY</td>
+<td align="center">Full year in numbers</td>
+</tr>
+<tr>
+<td align="center">YEAR</td>
+<td align="center">Year spelled out (in English)</td>
+</tr>
+<tr>
+<td align="center">MM</td>
+<td align="center">Two-digit value for the month</td>
+</tr>
+<tr>
+<td align="center">MONTH</td>
+<td align="center">Full name of the month</td>
+</tr>
+<tr>
+<td align="center">MON</td>
+<td align="center">Three-letter abbreviation of the month</td>
+</tr>
+<tr>
+<td align="center">DY</td>
+<td align="center">Three-letter abbreviation of the day of the week</td>
+</tr>
+<tr>
+<td align="center">DAY</td>
+<td align="center">Full name of the day of the week</td>
+</tr>
+<tr>
+<td align="center">DD</td>
+<td align="center">Numberic day of the month</td>
+</tr>
+</tbody></table>
+<h5 id="Elements-of-the-Date-Format-Model-1"><a href="#Elements-of-the-Date-Format-Model-1" class="headerlink" title="Elements of the Date Format Model"></a>Elements of the Date Format Model</h5><p>Time elements format the time portion of the date:</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">HH24</span><span class="hljs-selector-pseudo">:MI</span><span class="hljs-selector-pseudo">:SS</span> <span class="hljs-selector-tag">AM</span>	15<span class="hljs-selector-pseudo">:45</span><span class="hljs-selector-pseudo">:32</span> <span class="hljs-selector-tag">PM</span><br></code></pre></td></tr></table></figure>
+<p>Add character strings by enclosing them with double quotation marks:</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">DD</span> <span class="hljs-string">&quot;of&quot;</span> MONTH	<span class="hljs-number">12</span> of OCTOBER<br></code></pre></td></tr></table></figure>
+<p>Number suffixes spell out numbers:</p>
+<figure class="highlight ebnf"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ebnf"><span class="hljs-attribute">ddspth	fourteenth</span><br></code></pre></td></tr></table></figure>
 <h5 id="Using-the-TO-CHAR-Functions-with-Numbers"><a href="#Using-the-TO-CHAR-Functions-with-Numbers" class="headerlink" title="Using the TO_CHAR Functions with Numbers"></a>Using the TO_CHAR Functions with Numbers</h5><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs stylus"><span class="hljs-function"><span class="hljs-title">TO_CHAR</span><span class="hljs-params">(number, <span class="hljs-string">&#x27;format_model&#x27;</span>)</span></span><br></code></pre></td></tr></table></figure>
 <p>These are some of the format elements that you can use with the TO_CHAR function to display a number value as a character:</p>
-<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614123551431.png" srcset="/img/loading.gif" alt="image-20210614123551431"></p>
+<table>
+<thead>
+<tr>
+<th align="center">Element</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">9</td>
+<td align="center">Represents a number</td>
+</tr>
+<tr>
+<td align="center">0</td>
+<td align="center">Forces a zero to be displayed</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="center">Places a floating dollar sign</td>
+</tr>
+<tr>
+<td align="center">L</td>
+<td align="center">Uses the floating local currency symbol</td>
+</tr>
+<tr>
+<td align="center">.</td>
+<td align="center">Prints a decimal point</td>
+</tr>
+<tr>
+<td align="center">,</td>
+<td align="center">Prints a comma as a thousands indicator</td>
+</tr>
+</tbody></table>
 <p>Using the TO_CHAR Function with Numbers</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> TO_CHAR(salary, <span class="hljs-string">&#x27;$99,999.00&#x27;</span>) SALARY<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> last_name = <span class="hljs-string">&#x27;Ernst&#x27;</span>;<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614123653478.png" srcset="/img/loading.gif" alt="image-20210614123653478"></p>
@@ -515,8 +659,13 @@
 </ul>
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">SELECT</span> last_name, employee id, <br>COALESCE(TO_CHAR(commission_pct), TO_CHAR(manager_id) ,<br>		<span class="hljs-string">&#x27;No commission and no manager&#x27;</span>)<br><span class="hljs-keyword">FROM</span> employees;<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614124850675.png" srcset="/img/loading.gif" alt="image-20210614124850675"></p>
-<h4 id="CASE-Expression"><a href="#CASE-Expression" class="headerlink" title="CASE Expression"></a>CASE Expression</h4><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614124926454.png" srcset="/img/loading.gif" alt="image-20210614124926454"></p>
-<h5 id="Using-the-CASE-Expression"><a href="#Using-the-CASE-Expression" class="headerlink" title="Using the CASE Expression"></a>Using the CASE Expression</h5><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614125003446.png" srcset="/img/loading.gif" alt="image-20210614125003446"></p>
+<h4 id="CASE-Expression"><a href="#CASE-Expression" class="headerlink" title="CASE Expression"></a>CASE Expression</h4><p>Facilitates conditional inquiries by doing the work of an <strong>IF-THEN-ELSE</strong> statement:</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ada"><span class="hljs-keyword">CASE</span> expr <span class="hljs-keyword">WHEN</span> comparision_expr1 <span class="hljs-keyword">THEN</span> return_expr1<br>		[<span class="hljs-keyword">WHEN</span> comparison_expr2 <span class="hljs-keyword">THEN</span> return_expr2<br>		<span class="hljs-keyword">WHEN</span> comparision_exprn <span class="hljs-keyword">THEN</span> return_exprn<br>		<span class="hljs-keyword">ELSE</span> else_expr]<br><span class="hljs-keyword">END</span><br></code></pre></td></tr></table></figure>
+
+
+<h5 id="Using-the-CASE-Expression"><a href="#Using-the-CASE-Expression" class="headerlink" title="Using the CASE Expression"></a>Using the CASE Expression</h5><p>Facilitates conditional inquiries by doing the work of an  <strong>IF-THEN-ELSE</strong> statement:</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> last_name, job_id, salary,<br>		<span class="hljs-keyword">CASE</span> job_id <span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;IT_PROG&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-number">1.10</span><span class="hljs-operator">*</span>SALARY<br>					<span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;ST_CLERK&#x27;</span> <span class="hljs-keyword">THEN</span> <span class="hljs-number">1.15</span><span class="hljs-operator">*</span>salary<br>					<span class="hljs-keyword">WHEN</span> <span class="hljs-string">&#x27;SA_REP&#x27;</span>	<span class="hljs-keyword">THEN</span> <span class="hljs-number">1.20</span><span class="hljs-operator">*</span>salary<br>		<span class="hljs-keyword">ELSE</span>		salary <span class="hljs-keyword">END</span>	&quot;REVISED_SALARY&quot;<br><span class="hljs-keyword">FROM</span> employees ;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210626235455921.png" srcset="/img/loading.gif" alt="image-20210626235455921"></p>
 <h4 id="DECODE-Function"><a href="#DECODE-Function" class="headerlink" title="DECODE Function"></a>DECODE Function</h4><p>Facilitates conditional inquiries by doing the work of a CASE expression or an IF-THEN-ELSE statement:</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql">DECODE (col <span class="hljs-operator">|</span> expression, search1,result1<br>		[, search2,result2,...,]<br>		[,<span class="hljs-keyword">default</span>])<br></code></pre></td></tr></table></figure>
 <p>Using the DECODE Function</p>
