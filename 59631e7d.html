@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      1.5k 字
+      1.6k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      28
+      31
        分钟
     </span>
   
@@ -337,12 +337,94 @@
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> last_name, job_id, department_id, salary<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> department_id, salary <span class="hljs-keyword">DESC</span>;<br></code></pre></td></tr></table></figure>
 <h3 id="Single-Row-Functions"><a href="#Single-Row-Functions" class="headerlink" title="Single-Row Functions"></a>Single-Row Functions</h3><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210516085747301.png" srcset="/img/loading.gif" alt="image-20210516085747301"></p>
 <h4 id="Character-Functions"><a href="#Character-Functions" class="headerlink" title="Character Functions"></a>Character Functions</h4><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210516085801083.png" srcset="/img/loading.gif" alt="image-20210516085801083"></p>
-<h4 id="Case-Convarsion-Functions"><a href="#Case-Convarsion-Functions" class="headerlink" title="Case-Convarsion Functions"></a>Case-Convarsion Functions</h4><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614121354201.png" srcset="/img/loading.gif" alt="image-20210614121354201"></p>
+<h4 id="Case-Convarsion-Functions"><a href="#Case-Convarsion-Functions" class="headerlink" title="Case-Convarsion Functions"></a>Case-Convarsion Functions</h4><p>These functions convert the case for character strings:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Function</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">LOWER(‘SQL Course’)</td>
+<td align="center">sql course</td>
+</tr>
+<tr>
+<td align="center">UPPER(‘SQL Course’)</td>
+<td align="center">sql course</td>
+</tr>
+<tr>
+<td align="center">INITCAP(‘SQL Course’)</td>
+<td align="center">sql course</td>
+</tr>
+</tbody></table>
 <h5 id="Using-Case-Conversion-Functions"><a href="#Using-Case-Conversion-Functions" class="headerlink" title="Using Case-Conversion Functions"></a>Using Case-Conversion Functions</h5><p>Display the employee number,name,and department number for employee Higgins:</p>
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> employee_id, last_name, department_id<br><span class="hljs-keyword">FROM</span> employee<br><span class="hljs-keyword">WHERE</span> <span class="hljs-built_in">LOWER</span>(last_name) = <span class="hljs-string">&#x27;higgins&#x27;</span>;<br></code></pre></td></tr></table></figure>
-<h4 id="Character-Manipulations-Functions"><a href="#Character-Manipulations-Functions" class="headerlink" title="Character-Manipulations Functions"></a>Character-Manipulations Functions</h4><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210516085845864.png" srcset="/img/loading.gif" alt="image-20210516085845864"></p>
+<h4 id="Character-Manipulations-Functions"><a href="#Character-Manipulations-Functions" class="headerlink" title="Character-Manipulations Functions"></a>Character-Manipulations Functions</h4><p>These functions manipulate character strings:</p>
+<table>
+<thead>
+<tr>
+<th align="center">Function</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">CONCAT(‘Hello’,’World’)</td>
+<td align="center">HelloWorld</td>
+</tr>
+<tr>
+<td align="center">SUBSTR(‘HelloWorld’,1,5)</td>
+<td align="center">Hello</td>
+</tr>
+<tr>
+<td align="center">LENGTH(‘HelloWorld’)</td>
+<td align="center">10</td>
+</tr>
+<tr>
+<td align="center">INSTR(‘HelloWorld’,’W’)</td>
+<td align="center">6</td>
+</tr>
+<tr>
+<td align="center">LPAD(salary,10,’*’)</td>
+<td align="center">* * * * *24000</td>
+</tr>
+<tr>
+<td align="center">RPAD(salary,10,’*)</td>
+<td align="center">24000 * * * * *</td>
+</tr>
+<tr>
+<td align="center">REPLACE(‘JAVACK and JUE’, ‘J’ , ‘BL’)</td>
+<td align="center">BLANK and BLUE</td>
+</tr>
+<tr>
+<td align="center">TRIM(‘H’ FROM ‘HelloWorld’)</td>
+<td align="center">elloWorld</td>
+</tr>
+</tbody></table>
 <h5 id="Using-the-Character-Manipulations-Functions"><a href="#Using-the-Character-Manipulations-Functions" class="headerlink" title="Using the Character-Manipulations Functions"></a>Using the Character-Manipulations Functions</h5><figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">SELECT</span> employee_id, CONCAT(first_name, last_name) <span class="hljs-type">NAME</span>, <br>job_id, LENGTH (last_name),<br><span class="hljs-keyword">INSERT</span>(LAST_NAME,<span class="hljs-string">&#x27;a&#x27;</span>) &quot;Contains &#x27;a&#x27;?&quot;<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> SUBSTR(job_id,<span class="hljs-number">4</span>) = <span class="hljs-string">&#x27;REP&#x27;</span>;<br></code></pre></td></tr></table></figure>
-<h4 id="Number-Functions"><a href="#Number-Functions" class="headerlink" title="Number Functions"></a>Number Functions</h4><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614121954065.png" srcset="/img/loading.gif" alt="image-20210614121954065"></p>
+<h4 id="Number-Functions"><a href="#Number-Functions" class="headerlink" title="Number Functions"></a>Number Functions</h4><p>ROUND:Rounds value to a specified decimal</p>
+<p>TRUNC: Truncates value to a specified decimal</p>
+<p>MOD: Returns remainder of division</p>
+<table>
+<thead>
+<tr>
+<th align="center">Function</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">ROUND(45.926,2)</td>
+<td align="center">45.93</td>
+</tr>
+<tr>
+<td align="center">TRUNC(45.926,2)</td>
+<td align="center">45.92</td>
+</tr>
+<tr>
+<td align="center">MOD(1600, 300)</td>
+<td align="center">100</td>
+</tr>
+</tbody></table>
 <h5 id="Using-the-ROUND-Functions"><a href="#Using-the-ROUND-Functions" class="headerlink" title="Using the ROUND Functions"></a>Using the ROUND Functions</h5><figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">SELECT</span> ROUND(<span class="hljs-number">45</span>.<span class="hljs-number">923</span>,<span class="hljs-number">2</span>), round(<span class="hljs-number">45</span>.<span class="hljs-number">923</span>,<span class="hljs-number">0</span>), ROUND(<span class="hljs-number">45</span>.<span class="hljs-number">923</span>,-<span class="hljs-number">1</span>)<br><span class="hljs-attribute">from</span> DUAL;<br></code></pre></td></tr></table></figure>
 <p>DUAL is a dummy table that you can use to view results from functions and calculations.</p>
 <h5 id="Using-the-MOD-Functions"><a href="#Using-the-MOD-Functions" class="headerlink" title="Using the MOD Functions"></a>Using the MOD Functions</h5><p>For all employees with the job title of Sales Representative,calculate the remainder of the salary after it is divided by 5,000.</p>
@@ -357,7 +439,38 @@
 <figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> sysdate <span class="hljs-keyword">FROM</span> DUAL;<br></code></pre></td></tr></table></figure>
 <h5 id="Using-Arithmetic-Operators-with-Dates"><a href="#Using-Arithmetic-Operators-with-Dates" class="headerlink" title="Using Arithmetic Operators with Dates"></a>Using Arithmetic Operators with Dates</h5><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> last_name, (sysdate-HIRE_DATE)/<span class="hljs-number">7</span> <span class="hljs-keyword">AS</span> WEEKS <br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> department_id=<span class="hljs-number">90</span>;<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614122610445.png" srcset="/img/loading.gif" alt="image-20210614122610445"></p>
-<h4 id="Date-Manipulation-Functions"><a href="#Date-Manipulation-Functions" class="headerlink" title="Date-Manipulation Functions"></a>Date-Manipulation Functions</h4><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210516090135753.png" srcset="/img/loading.gif" alt="image-20210516090135753"></p>
+<h4 id="Date-Manipulation-Functions"><a href="#Date-Manipulation-Functions" class="headerlink" title="Date-Manipulation Functions"></a>Date-Manipulation Functions</h4><table>
+<thead>
+<tr>
+<th align="center">Function</th>
+<th align="center">Result</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">MONTHS_BETWEEN</td>
+<td align="center">Number of months betwwn two dates</td>
+</tr>
+<tr>
+<td align="center">ADD_MONTHS</td>
+<td align="center">Add calendar months to date</td>
+</tr>
+<tr>
+<td align="center">NEXT_DAY</td>
+<td align="center">Next day of the date specified</td>
+</tr>
+<tr>
+<td align="center">LAST_DAY</td>
+<td align="center">Last day of the month</td>
+</tr>
+<tr>
+<td align="center">ROUND</td>
+<td align="center">Round date</td>
+</tr>
+<tr>
+<td align="center">TRUNC</td>
+<td align="center">Truncate date</td>
+</tr>
+</tbody></table>
 <h5 id="Using-Date-Functions"><a href="#Using-Date-Functions" class="headerlink" title="Using Date Functions"></a>Using Date Functions</h5><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614122709850.png" srcset="/img/loading.gif" alt="image-20210614122709850"></p>
 <h5 id="Using-ROUND-and-TRUNCA-Functions-with-Dates"><a href="#Using-ROUND-and-TRUNCA-Functions-with-Dates" class="headerlink" title="Using ROUND and TRUNCA Functions with Dates"></a>Using ROUND and TRUNCA Functions with Dates</h5><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210614122804862.png" srcset="/img/loading.gif" alt="image-20210614122804862"></p>
 <h4 id="Conversion-Functions"><a href="#Conversion-Functions" class="headerlink" title="Conversion Functions"></a>Conversion Functions</h4><p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210516090232966.png" srcset="/img/loading.gif" alt="image-20210516090232966"></p>
