@@ -17,7 +17,7 @@
   <meta name="description" content="Java简易编程">
   <meta name="author" content="mathwm">
   <meta name="keywords" content="Java简易编程">
-  <title>两篇文章搞定SQL (二) - Java简易编程</title>
+  <title>SQL语句三板斧 (二) - Java简易编程</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -162,7 +162,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="两篇文章搞定SQL (二)">
+            <span class="h2" id="subtitle" title="SQL语句三板斧 (二)">
               
             </span>
 
@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      968 字
+      1.7k 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      18
+      31
        分钟
     </span>
   
@@ -232,10 +232,12 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">两篇文章搞定SQL (二)</h1>
+            <h1 style="display: none">SQL语句三板斧 (二)</h1>
             
             <div class="markdown-body">
               <h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="Types-of-Joins"><a href="#Types-of-Joins" class="headerlink" title="Types of Joins"></a>Types of Joins</h3><p>Joins that are compliant with the SQL:1999 standard include the following:</p>
+<a id="more"></a>
+
 <p>Natural joins:</p>
 <ul>
 <li>NATURAL JOIN clause</li>
@@ -330,6 +332,91 @@
 <ul>
 <li>The subquery(inner query)  executes before the main query (outer query).</li>
 <li>The result of the subquery is used by the main query.</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> last_name, salary <br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> salary <span class="hljs-operator">&gt;</span><br>				(<span class="hljs-keyword">SELECT</span> salary <br>				<span class="hljs-keyword">FROM</span> employees<br>				<span class="hljs-keyword">WHERE</span> last_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Abel&#x27;</span>) ;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210627170341963.png" srcset="/img/loading.gif" alt="image-20210627170341963"></p>
+<h3 id="Guidelines-for-Using-Subqueries"><a href="#Guidelines-for-Using-Subqueries" class="headerlink" title="Guidelines for Using Subqueries"></a>Guidelines for Using Subqueries</h3><ul>
+<li>Enclose subqueries in parentheses.</li>
+<li>Place subqueries on the right side of the comparision condition for readability(However, the subquery can appear on either side of the comparision operator.).</li>
+<li>Use <code>single-row operators</code> with single-row subqueries and <code>multiple-row operators</code> with multiple-row subqueires.</li>
+</ul>
+<h4 id="Single-Row-Subqueries"><a href="#Single-Row-Subqueries" class="headerlink" title="Single-Row Subqueries"></a>Single-Row Subqueries</h4><ul>
+<li><p>Return only one row</p>
+</li>
+<li><p>Use single-row comparision operators</p>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210627170853365.png" srcset="/img/loading.gif" alt="image-20210627170853365"></p>
+</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> last_name, job_id, salary<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> job_id <span class="hljs-operator">=</span> (<span class="hljs-keyword">SELECT</span> job_id<br>				<span class="hljs-keyword">FROM</span> employees <br>				<span class="hljs-keyword">WHERE</span> last_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Taylor&#x27;</span>)<br>ADN salary <span class="hljs-operator">&gt;</span> (<span class="hljs-keyword">SELECT</span> salary <br>				<span class="hljs-keyword">FROM</span> employees<br>				<span class="hljs-keyword">WHERE</span> last_name <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;Taylor&#x27;</span>) ;<br></code></pre></td></tr></table></figure>
+<h4 id="Using-Group-Functions-in-a-Subquery"><a href="#Using-Group-Functions-in-a-Subquery" class="headerlink" title="Using Group Functions in a Subquery"></a>Using Group Functions in a Subquery</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> last_name, job_id, salary<br><span class="hljs-keyword">FROM</span> employee<br><span class="hljs-keyword">WHERE</span> salary <span class="hljs-operator">=</span> <br>				(<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MIN</span>(salary)<br>				<span class="hljs-keyword">FROM</span> employees) ;<br></code></pre></td></tr></table></figure>
+<h4 id="The-HAVING-Clause-with-Subqueries"><a href="#The-HAVING-Clause-with-Subqueries" class="headerlink" title="The HAVING Clause with Subqueries"></a>The HAVING Clause with Subqueries</h4><ul>
+<li>The Oracle server executes the subqueries first.</li>
+<li>The Oracle server returns results into the HAVINGclause of the main query.</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> department_id, <span class="hljs-built_in">MIN</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> department_id<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">MIN</span>(salary) <span class="hljs-operator">&gt;</span> <br>					(<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MIN</span>(salary)<br>					<span class="hljs-keyword">FROM</span> employees <br>					<span class="hljs-keyword">WHERE</span> department_id <span class="hljs-operator">=</span> <span class="hljs-number">50</span> );<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> job_id, <span class="hljs-built_in">AVG</span>(salary)<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id<br><span class="hljs-keyword">HAVING</span> <span class="hljs-built_in">AVG</span>(salary) <span class="hljs-operator">=</span> <br>					(<span class="hljs-keyword">SELECT</span> <span class="hljs-built_in">MIN</span>(<span class="hljs-built_in">AVG</span>(salary)) <br>					<span class="hljs-keyword">FROM</span> employees <br>					<span class="hljs-keyword">GROUP</span> <span class="hljs-keyword">BY</span> job_id) ;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210627172905252.png" srcset="/img/loading.gif" alt="image-20210627172905252"></p>
+<h4 id="Multiple-Row-Subqueries"><a href="#Multiple-Row-Subqueries" class="headerlink" title="Multiple-Row Subqueries"></a>Multiple-Row Subqueries</h4><ul>
+<li>Return more than one row</li>
+<li>Use multiple-row comparision operators</li>
+</ul>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210627173056315.png" srcset="/img/loading.gif" alt="image-20210627173056315"></p>
+<p>Using the ANY Operator in Multiple-Row Subqueries</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> employee_id, last_name, job_id, salary<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">WHERE</span> salary <span class="hljs-operator">&lt;</span> <span class="hljs-keyword">ANY</span><br>					(<span class="hljs-keyword">SELECT</span> salary <br>					<span class="hljs-keyword">FROM</span> employees<br>					<span class="hljs-keyword">WHERE</span> job_id <span class="hljs-operator">=</span> <span class="hljs-string">&#x27;IT_PROG&#x27;</span>)<br><span class="hljs-keyword">and</span> JOB_ID <span class="hljs-operator">&lt;&gt;</span> <span class="hljs-string">&#x27;IT_PROG&#x27;</span> ;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210627173503177.png" srcset="/img/loading.gif" alt="image-20210627173503177"></p>
+<p>( <code>WHERE salary &lt; ANY ( 9000 , 6000, 4200)</code>  )</p>
+<ul>
+<li>小于ANY 就是小于 这里的最大值</li>
+<li>大于ANY 就是大于 这里的最小值</li>
+<li>等于ANY 就是 IN</li>
+</ul>
+<p>( <code>WHERE salary &lt; ALL ( 9000 , 6000, 4200)</code>  )</p>
+<ul>
+<li>小于ALL 就是小于这里的最小值</li>
+<li>大于ALL 就是大于这里的最大值</li>
+<li>没有等于ALL</li>
+<li>有不等于 ALL （  <code>&lt;&gt; ALL</code>  相当于 <code>NOT IN</code>）</li>
+</ul>
+<h4 id="Null-Values-in-a-Subquery"><a href="#Null-Values-in-a-Subquery" class="headerlink" title="Null Values in a Subquery"></a>Null Values in a Subquery</h4><figure class="highlight n1ql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs n1ql"><span class="hljs-keyword">SELECT</span> emp.last_name<br><span class="hljs-keyword">FROM</span> employees emp<br><span class="hljs-keyword">WHERE</span> emplemployee_id <span class="hljs-keyword">NOT</span> <span class="hljs-keyword">IN</span><br>							(<span class="hljs-keyword">SELECT</span> mgr.manager_id <br>							<span class="hljs-keyword">FROM</span> employees mgr) ;<br></code></pre></td></tr></table></figure>
+<p>0 rows selected</p>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/%E6%90%9C%E7%8B%97%E6%88%AA%E5%9B%BE20210627175138.jpg" srcset="/img/loading.gif" alt="搜狗截图20210627175138"></p>
+<h2 id="Set-Operators-集合操作"><a href="#Set-Operators-集合操作" class="headerlink" title="Set Operators(集合操作)"></a>Set Operators(集合操作)</h2><p><img src="https://gitee.com/mathwm/picBed/raw/master/202106271758.png" srcset="/img/loading.gif" alt="202106271758"></p>
+<p>并集，交际 ，相减</p>
+<h3 id="Set-Operator-Guidelines"><a href="#Set-Operator-Guidelines" class="headerlink" title="Set Operator Guidelines"></a>Set Operator Guidelines</h3><ul>
+<li>The expressions in the SELECT <code>lists must</code> match in number.</li>
+<li>The data type of each column in the second query must match the <code>data type</code> of its corresponding column in the first query.</li>
+<li><code>Parentheses</code> can be used to alter the sequence of execution.</li>
+<li>ORDER BY clause can appear only at the very <code>end of the statement</code>.</li>
+</ul>
+<h4 id="The-Oracle-Sever-and-Set-Operator"><a href="#The-Oracle-Sever-and-Set-Operator" class="headerlink" title="The Oracle Sever and Set Operator"></a>The Oracle Sever and Set Operator</h4><ul>
+<li>Duplicate rows are automatically eliminated except in UNION ALL.</li>
+<li>Column names from the first query appear in the result.</li>
+<li>The output is sorted in ascending order by default except in UNION ALL.</li>
+</ul>
+<h4 id="Using-the-UNION-Operator，并集"><a href="#Using-the-UNION-Operator，并集" class="headerlink" title="Using the UNION Operator，并集"></a>Using the UNION Operator，并集</h4><p>Display the current and previous job details of all employees.</p>
+<p>Display each employee only once.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> employee_id, job_id<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">UNION</span><br><span class="hljs-keyword">SELECT</span> employee_id, job_id<br><span class="hljs-keyword">FROM</span> job_history ;<br></code></pre></td></tr></table></figure>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210627181234565.png" srcset="/img/loading.gif" alt="image-20210627181234565"></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> employee_id, job_id<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">UNION</span> <span class="hljs-keyword">ALL</span><br><span class="hljs-keyword">SELECT</span> employee_id, job_id<br><span class="hljs-keyword">FROM</span> job_history <br><br><span class="hljs-keyword">ORDER</span> <span class="hljs-keyword">BY</span> employee_id;<br></code></pre></td></tr></table></figure>
+<p>UNION ALL包括重复的行,ORDER BY 是整个ORDER BY。</p>
+<h4 id="INTERSECT-Operator-交集，包括算NULL值"><a href="#INTERSECT-Operator-交集，包括算NULL值" class="headerlink" title="INTERSECT Operator,交集，包括算NULL值"></a>INTERSECT Operator,交集，包括算NULL值</h4><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> employee_id, job_id<br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">INTERSECT</span><br><span class="hljs-keyword">SELECT</span> employee_id, job_id<br><span class="hljs-keyword">FROM</span> job_history <br></code></pre></td></tr></table></figure>
+<h4 id="MINUS-Operator-都是以第一个表的字段显示"><a href="#MINUS-Operator-都是以第一个表的字段显示" class="headerlink" title="MINUS Operator,都是以第一个表的字段显示"></a>MINUS Operator,都是以第一个表的字段显示</h4><p>The MINUS operator returns all the distinct rows selected by the first query, but ont present in the second query result set.</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> employee_id, job_id<br><span class="hljs-keyword">FROM</span> employees<br>MINUS<br><span class="hljs-keyword">SELECT</span> employee_id, job_id<br><span class="hljs-keyword">FROM</span> job_history <br></code></pre></td></tr></table></figure>
+<h4 id="Matching-the-SELECT-Statements"><a href="#Matching-the-SELECT-Statements" class="headerlink" title="Matching the SELECT Statements"></a>Matching the SELECT Statements</h4><ul>
+<li>Using the UNION operator,display the location ID,department name,and the state where it is located.</li>
+<li>You must match the data type(using the TO_CHAR function or any other conversion functions) when columns do not exist in one or the other table.</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> location_id, department_name &quot;Department&quot;, TO_CHAR(<span class="hljs-keyword">NULL</span>) &quot;Warehouse location&quot;<br><span class="hljs-keyword">FROM</span> departments<br><span class="hljs-keyword">UNION</span> <br><span class="hljs-keyword">SELECT</span> location_id, TO_CHAR(<span class="hljs-keyword">NULL</span>) &quot;Department&quot;, state_province<br><span class="hljs-keyword">FROM</span> locations ;<br></code></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> employee_id, job_id, salary <br><span class="hljs-keyword">FROM</span> employees<br><span class="hljs-keyword">UNION</span> <br><span class="hljs-keyword">SELECT</span> employee_id, job_id,<span class="hljs-number">0</span><br><span class="hljs-keyword">FROM</span> job_hisotry ;<br></code></pre></td></tr></table></figure>
+<h4 id="Using-the-ORDER-BY-Clause-in-Set-Operations"><a href="#Using-the-ORDER-BY-Clause-in-Set-Operations" class="headerlink" title="Using the ORDER BY Clause in Set Operations"></a>Using the ORDER BY Clause in Set Operations</h4><ul>
+<li><p>The ORDER BY clause can appear only once at the end of the compound query(复合查询).</p>
+</li>
+<li><p>Component queries cannot have individaul ORDER BY clauses.</p>
+</li>
+<li><p>ORDER BY clause reCOGNIZES ONLY the columns of the first SELECT query.</p>
+</li>
+<li><p>By default, the first column of the first SELECT query is used to sort the output in an ascending order.</p>
+</li>
 </ul>
 
             </div>
