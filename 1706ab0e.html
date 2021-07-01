@@ -235,9 +235,10 @@
             <h1 style="display: none">SQL语句速查笔记 (二)</h1>
             
             <div class="markdown-body">
-              <h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="Types-of-Joins"><a href="#Types-of-Joins" class="headerlink" title="Types of Joins"></a>Types of Joins</h3><p>Joins that are compliant with the SQL:1999 standard include the following:</p>
+              <p>Joins that are compliant with the SQL:1999 standard include the following:</p>
 <a id="more"></a>
 
+<h2 id="多表查询"><a href="#多表查询" class="headerlink" title="多表查询"></a>多表查询</h2><h3 id="Types-of-Joins"><a href="#Types-of-Joins" class="headerlink" title="Types of Joins"></a>Types of Joins</h3><p>Joins that are compliant with the SQL:1999 standard include the following:</p>
 <p>Natural joins:</p>
 <ul>
 <li>NATURAL JOIN clause</li>
@@ -315,6 +316,7 @@
 <li>A join between two tables that return s the results of the inner join as well as the <code>unmatched rows from the left( or right) table is called a left(or right) outer join</code>.</li>
 <li>A join between two tables that returns the results of an inner join as well as the results of a left and right join is a <code>full outer join</code>.</li>
 </ul>
+<p><img src="https://gitee.com/mathwm/picBed/raw/master/sql-join.png" srcset="/img/loading.gif" alt="sql-join"></p>
 <h3 id="LEFT-OUTER-JOIN"><a href="#LEFT-OUTER-JOIN" class="headerlink" title="LEFT OUTER JOIN"></a>LEFT OUTER JOIN</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs sql"><span class="hljs-keyword">SELECT</span> e.last_name, e.department_id, d.department_name<br><span class="hljs-keyword">FROM</span> employees e <span class="hljs-keyword">LEFT</span> <span class="hljs-keyword">OUTER</span> <span class="hljs-keyword">JOIN</span> departments d<br><span class="hljs-keyword">ON</span> (e.department_id <span class="hljs-operator">=</span> d.department_id) ;<br></code></pre></td></tr></table></figure>
 <p><img src="https://gitee.com/mathwm/picBed/raw/master/image-20210627124956460.png" srcset="/img/loading.gif" alt="image-20210627124956460"></p>
 <h4 id="OUTER-JOIN-Oracle-Syntax"><a href="#OUTER-JOIN-Oracle-Syntax" class="headerlink" title="OUTER JOIN: Oracle Syntax"></a>OUTER JOIN: Oracle Syntax</h4><ul>
