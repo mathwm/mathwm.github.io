@@ -254,9 +254,9 @@
 <p>批量起别名的情况下，使用@Alias注解为某个类型指定新的别名</p>
 <h4 id="typeHandlers-类型处理器"><a href="#typeHandlers-类型处理器" class="headerlink" title="typeHandlers 类型处理器"></a>typeHandlers 类型处理器</h4><h4 id="objectFactory-对象工厂"><a href="#objectFactory-对象工厂" class="headerlink" title="objectFactory 对象工厂"></a>objectFactory 对象工厂</h4><h4 id="plugins-插件"><a href="#plugins-插件" class="headerlink" title="plugins 插件"></a>plugins 插件</h4><h4 id="environments-环境"><a href="#environments-环境" class="headerlink" title="environments 环境"></a>environments 环境</h4><p>environments：mybatis可以配置多种环境 ,default指定使用某种环境。可以达到快速切换环境。</p>
 <h5 id="environment-环境变量"><a href="#environment-环境变量" class="headerlink" title="environment 环境变量"></a>environment 环境变量</h5><p> environment：配置一个具体的环境信息；必须有两个标签；id代表当前环境的唯一标识</p>
-<h5 id="transactionManager-事务管理器"><a href="#transactionManager-事务管理器" class="headerlink" title="transactionManager 事务管理器"></a>transactionManager 事务管理器</h5><p>type：事务管理器的类型;JDBC(JdbcTransactionFactory)|MANAGED(ManagedTransactionFactory);自定义事务管理器：实现TransactionFactory接口</p>
+<h6 id="transactionManager-事务管理器"><a href="#transactionManager-事务管理器" class="headerlink" title="transactionManager 事务管理器"></a>transactionManager 事务管理器</h6><p>type：事务管理器的类型;JDBC(JdbcTransactionFactory)|MANAGED(ManagedTransactionFactory);自定义事务管理器：实现TransactionFactory接口</p>
 <p>type指定为全类名                    </p>
-<h5 id="dataSource-数据源"><a href="#dataSource-数据源" class="headerlink" title="dataSource 数据源"></a>dataSource 数据源</h5><p>dataSource：数据源;type标签是指数据型;</p>
+<h6 id="dataSource-数据源"><a href="#dataSource-数据源" class="headerlink" title="dataSource 数据源"></a>dataSource 数据源</h6><p>dataSource：数据源;type标签是指数据型;</p>
 <p>UNPOOLED(UnpooledDataSourceFactory)|POOLED(PooledDataSourceFactory)|JNDI(JndiDataSourceFactory)自定义数据源：实现DataSourceFactory接口</p>
 <p>type是全类名</p>
 <h4 id="databaseIdProvider-数据库厂商标识"><a href="#databaseIdProvider-数据库厂商标识" class="headerlink" title="databaseIdProvider 数据库厂商标识"></a>databaseIdProvider 数据库厂商标识</h4><p>atabaseIdProvider：支持多数据库厂商的； type=”DB_VENDOR”：VendorDatabaseIdProvider</p>
